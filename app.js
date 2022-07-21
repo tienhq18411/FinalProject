@@ -4,7 +4,7 @@ var router = express.Router();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-const bcrypt = require("bcrypt");
+
 var hbs = require("hbs");
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});

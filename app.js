@@ -1,6 +1,9 @@
 const express = require("express");
 var app = express();
 var router = express.Router();
+var cors = require("cors");
+var dotenv = require("dotenv");
+var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
@@ -13,6 +16,11 @@ require("./models/db");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+app.use(cors());
+
+
 
 var authRoutes = require("./routes/authRoute");
 

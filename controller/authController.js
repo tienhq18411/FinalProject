@@ -1,5 +1,5 @@
 const account = require('../models/accounts')
-
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     login: function (req, res, next){
@@ -8,14 +8,22 @@ module.exports = {
     postLogin: async function (req, res, next){
         var username = req.body.username;
         var password = req.body.password;
-        var role = req.body.role;
+        var role = req.body.role
+
         account.findOne({
             username: username,
             password: password,
             role: role
         })
         .then(data =>{
-            res.render('admin');
+            if(data){
+                var token = jwt.sign({
+                    _id: data._id,
+                },'mk')
+                return res.json({
+                    token: token
+                })
+            }
         })
         .catch(error=>{
             res.status(500).json(error)
@@ -23,7 +31,6 @@ module.exports = {
 
         var Account = await account.findOne({ username: username });
         
-
         if (!Account) {
             res.render('login', {
                 error: [
@@ -34,7 +41,7 @@ module.exports = {
             return;
         }
 
-        if (Account.password !== password) {
+        if (!Account.password == !password) {
             res.render('login', {
                 error: [
                     'Incorrect password'
@@ -43,6 +50,7 @@ module.exports = {
             });
             return;
         }
+    
         
 
     },
@@ -74,6 +82,9 @@ module.exports = {
         .catch(error=>{
             res.status(500).json(error)
             })
+
+        
+     
 
     }
 

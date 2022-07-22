@@ -8,19 +8,20 @@ module.exports = {
     postLogin: async function (req, res, next){
         var username = req.body.username;
         var password = req.body.password;
-        var role = req.body.role
+
 
         account.findOne({
             username: username,
             password: password,
-            role: role
+
         })
         .then(data =>{
             if(data){
                 var token = jwt.sign({
                     _id: data._id,
                 },'mk')
-                return res.json({
+                 res.json({
+                   
                     token: token
                 })
             }
@@ -70,7 +71,7 @@ module.exports = {
                     values: req.body     
             });
           }
-
+          else{
         account.create({
             username: username,
             password: password,
@@ -85,8 +86,9 @@ module.exports = {
 
         
      
-
+        }
     }
+
 
 } 
 

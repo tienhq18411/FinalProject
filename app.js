@@ -1,4 +1,4 @@
-const express = require("express");
+var express = require("express");
 var app = express();
 var router = express.Router();
 var cors = require("cors");
@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-
+var authMiddleware = require('./middleware/jwt.auth');
 
 var authRoutes = require("./routes/authRoute");
+
 
 app.get("/", function (req, res) {
   res.redirect("login");

@@ -16,19 +16,21 @@ module.exports = {
 
         })
         .then(data =>{
+            
             if(data){
                 var token = jwt.sign({
                     _id: data._id,
                 },'mk')
-                 res.json({
-                   
-                    token: token
-                })
+                 res.cookie(
+                    "token",token)
+                
             }
+            
         })
         .catch(error=>{
             res.status(500).json(error)
             })
+            
 
         var Account = await account.findOne({ username: username });
         

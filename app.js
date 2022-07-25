@@ -23,6 +23,7 @@ app.use(cors());
 var authMiddleware = require('./middleware/jwt.auth');
 
 var authRoutes = require("./routes/authRoute");
+var adminRoutes = require("./routes/adminRoute");
 
 
 app.get("/", function (req, res) {
@@ -30,6 +31,7 @@ app.get("/", function (req, res) {
 });
 
 app.use("/", authRoutes);
+app.use('/admin',adminRoutes);
 
 app.listen(3000, () => {
   console.log("Server on port");

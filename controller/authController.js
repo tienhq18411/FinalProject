@@ -1,6 +1,7 @@
 const account = require('../models/accounts')
 const jwt = require("jsonwebtoken");
 
+
 module.exports = {
     login: function (req, res, next){
         res.render('login');
@@ -9,18 +10,21 @@ module.exports = {
         var username = req.body.username;
         var password = req.body.password;
 
-
         account.findOne({
             username: username,
             password: password,
 
         })
+        
         .then(data =>{
             if(data){
                 var token = jwt.sign({
                     _id: data._id,
                 },'mk')
-                 res.cookie("token",token)
+                 res.json({
+                    token: token
+            })
+
             }
             
         })
@@ -77,7 +81,10 @@ module.exports = {
             role: role
         })
         .then(data =>{
-            res.render('login');
+            if(data){
+                res.redirect('login');
+            }
+            
         })
         .catch(error=>{
             res.status(500).json(error)

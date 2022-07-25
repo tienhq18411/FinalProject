@@ -14,23 +14,5 @@
     <button  onclick="Login()">Login</button> <br>
     <button type="submit"><a href="register">register</a></button>
     </form>
-    <script>
-        function Login(){
-            $.ajax({
-                url:'/login',
-                type: 'POST',
-                data:{
-                    username: $('#username').val(),
-                    password: $('#password').val(),
-                }
-            })
-            .then(data =>{
-                setCookie('token', data.token, 1)
-            })
-            .catch(err =>{
-                console.log(err);
-            })
-        }
-    </script>
 </body>
 </html>

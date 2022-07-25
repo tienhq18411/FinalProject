@@ -1,31 +1,26 @@
 var account = require("../models/accounts");
+const jwt = require('jsonwebtoken');
+
 
 module.exports = {
     requireAuth: async function (req, res, next) {
-        if (!req.cookies.accountId) {
-            res.redirect('login');
-            return;
-        }
-        var Account = await account.find({ id: req.cookies.accountId });
-        if (!Account) {
-            res.redirect('login');
-            return;
-        }
-        next();
-
-    },
-    checkLogin: function (role) {
-        return async (req, res, next) => {
-            var id = req.cookies.accountId
-            var Account = await account.findOne({ _id: id });
-            if (account.role !== role) {
-                res.status(401)
-                return res.send('You are not an ' + role +', you do not have permission to access this website');
+            try{
+                var token = req.headers.token;
+                var result = jwt.verify(token, 'mk')
+                if(result){
+                    res.render('admin');
+                    next();
+                }
+    
+            }catch(error){
+                return res.render('admin');
             }
-            res.locals.Account = Account;
-            
-            
-            next();
-        }
+    },
+    
+
+    checkLogin: async function (req, res){
+        var role = req.data.role
+
     }
 }
+

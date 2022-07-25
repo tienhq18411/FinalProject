@@ -19,12 +19,9 @@ module.exports = {
         .then(data =>{
             if(data){
                 var token = jwt.sign({
-                    _id: data._id,
+                    _id: data.id,
                 },'mk')
-                 res.json({
-                    token: token
-            })
-
+                 res.cookie("token", token)
             }
             
         })

@@ -31,8 +31,8 @@ app.get("/", function (req, res) {
 });
 
 app.use("/", authRoutes);
-app.use('/admin',adminRoutes);
+app.use('/admin',authMiddleware.requireAuth,adminRoutes);
 
-app.listen(3000, () => {
-  console.log("Server on port");
-});
+var PORT = process.env.PORT || 3000
+app.listen(PORT);
+console.log("Server is running on port: " + PORT);

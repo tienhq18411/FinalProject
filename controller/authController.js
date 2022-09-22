@@ -32,7 +32,7 @@ module.exports = {
             return;
         }
         res.cookie('accountID', Account.id);
-        res.redirect('admin/admin');
+        res.redirect('admin');
     
         
 

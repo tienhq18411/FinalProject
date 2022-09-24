@@ -1,80 +1,58 @@
-const account = require('../models/accounts')
+const account = require('../models/accounts');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 
 module.exports = {
-    login: function (req, res, next){
-        res.render('login');
-    },
-    postLogin: async function (req, res, next){
-        var username = req.body.username;
-        var password = req.body.password;
-            
-
-        var Account = await account.findOne({ username: username });
-        
-        if (!Account) {
-            res.render('login', {
-                error: [
-                    'Account does not exist'
-                ],
-                values: req.body
-            });
-            return;
-        }
-
-        if (Account.password !== password) {
-            res.render('login', {
-                error: [
-                    'Incorrect password'
-                ],
-                values: req.body
-            });
-            return;
-        }
-        res.cookie('accountID', Account.id);
-        res.redirect('admin');
-    
-        
-
-    },
     register: function (req, res, next){
-        res.render('register');
+        res.render('auth/register');
     },
     postRegister: async function(req, res, next){
-        var username = req.body.username
-        var password = req.body.password
-        var role = req.body.role
+        try {
+            const salt = await bcrypt.genSalt(10);
+            const hashed = await bcrypt.hash(req.body.password, salt);
 
-        var oldUser = await account.findOne({username})
-        if (oldUser) {
-            res.render('register',{
-                error: [
-                    "User Already Exist. Please Login"],
-                    values: req.body     
+            const newUser = await new account({
+                username: req.body.username,
+                password: hashed,
+                role: req.body.role
             });
-          }
-          else{
-        account.create({
-            username: username,
-            password: password,
-            role: role
-        })
-        .then(data =>{
-            if(data){
-                res.redirect('login');
+            const Account = await newUser.save();
+            res.redirect('login');
+        } catch (error) {
+            res.status(500).json(error);
+        } 
+    },
+
+    login: function (req, res, next){
+        res.render('auth/login');
+    },
+    postLogin: async function (req, res, next){
+         try {
+            const user = await account.findOne({username: req.body.username});
+            if(!user){
+                res.status(404).json("wrong username")
+            }
+            const validPassword = await bcrypt.compare(
+                req.body.password,
+                user.password
+            );
+            if(!validPassword){
+                res.status(404).json("wrong password")
+            }
+            if(user && validPassword){
+                var token = jwt.sign({
+                    id: user.id
+                },'mk',
+                {expiresIn: "30d"}
+                );
+                
+                res.cookie('token', token);
+                res.redirect('/'+ user.role);
             }
             
-        })
-        .catch(error=>{
-            res.status(500).json(error)
-            })
-
-        
-     
-        }
+         } catch (error) {
+            res.status(500).json(error);
+         }
     }
-
-
-} 
-
-
+}

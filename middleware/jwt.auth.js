@@ -1,31 +1,65 @@
 var Account = require("../models/accounts");
+const jwt = require("jsonwebtoken");
+
 
 module.exports = {
     requireAuth: async function (req, res, next) {
-        if (!req.cookies.AccountId) {
-            res.redirect('/login');
-            return;
+       try{
+            const token = req.cookies.token;
+            const isUser =  jwt.verify(token, 'mk')
+            
+
+            Account.findOne({
+                _id:isUser.id
+            })
+            .then(data =>{
+                if(data){
+                req.data = data;
+                    next();
+                }else{
+                    res.json("no token")
+                }
+            })
+            
+         .catch (err => {
+            console.log(err);
+            res.json("ban can login");
+         })
         }
-        var account = await Account.find({ id: req.cookies.AccountId });
-        if (!account) {
-            res.redirect('/login');
-            return;
-        }
-        next();
+         catch (err){
+            res.status(500).json("loi server")
+         }
+       
 
     },
-    // checkLogin: function (role) {
-    //     return async (req, res, next) => {
-    //         var id = req.cookies.accountId
-    //         var account = await Account.findOne({ _id: id });
-    //         if (account.role !== role) {
-    //             res.status(401)
-    //             return res.send('You are not an ' + role +', you do not have permission to access this website');
-    //         }
-    //         res.locals.account = account;
+    checkAdmin: function (req, res, next) {
+           var role = req.data.role;
+           if(role === 'admin'){
+            console.log(req.data);
+            next();
+           } else{
+            res.json("nope ")
+           }
             
+    }, 
+    checkManager: function (req, res, next) {
+           var role = req.data.role;
+           if(role === 'manager'){
+            console.log(req.data);
+            next();
+           } else{
+            res.json("nope " + role)
+           }
             
-    //         next();
-    //     }
-    // }
-};
+    }, 
+    checkUser: function (req, res, next) {
+           var role = req.data.role;
+           if(role === 'user'){
+            console.log(req.data);
+            next();
+           } else{
+            res.json("nope " + role)
+           }
+            
+    }
+}

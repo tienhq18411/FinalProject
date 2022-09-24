@@ -20,18 +20,22 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-var authMiddleware = require('./middleware/jwt.auth');
+
 
 var authRoutes = require("./routes/authRoute");
 var adminRoutes = require("./routes/adminRoute");
+var managerRoutes = require("./routes/managerRoute");
+var userRoutes = require("./routes/userRoute");
 
 
 app.get("/", function (req, res) {
-  res.redirect("login");
+  res.redirect("auth/login");
 });
 
-app.use("/", authRoutes);
-app.use('/admin',authMiddleware.requireAuth,adminRoutes);
+app.use("/auth", authRoutes);
+app.use('/admin',adminRoutes);
+app.use('/manager', managerRoutes);
+app.use('/user',userRoutes);
 
 var PORT = process.env.PORT || 3000
 app.listen(PORT);

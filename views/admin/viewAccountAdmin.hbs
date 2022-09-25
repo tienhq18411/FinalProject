@@ -13,18 +13,20 @@
             <th>Name</th>
             <th>username</th>
             <th>password</th>
-            <th>email</th>
+            <th>role</th>
             <th></th>
             <th></th>
         </tr>
+        {{#each accountAdmin}}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{name}}</td>
+            <td>{{username}}</td>
+            <td>{{password}}</td>
+            <td>{{role}}</td>
             <td><a href="/admin/updateAccountAdmin">update</a></td>
             <td><a href="/admin/deleteAccountAdmin">delete</a></td>
         </tr>
+        {{/each}}
     </table>
 </body>
 </html>

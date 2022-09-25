@@ -19,9 +19,10 @@ module.exports = {
             });
             const Account = await newUser.save();
             res.redirect('login');
-        } catch (error) {
-            res.status(500).json(error);
-        } 
+        } catch (err) {
+            res.status(500).json(err);
+        }
+     
     },
 
     login: function (req, res, next){

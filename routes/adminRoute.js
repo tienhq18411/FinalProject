@@ -17,4 +17,6 @@ router.get('/updateAccountAdmin', Controllers.updateAccountAdmin);
 router.get('/updateAccountUser', Controllers.updateAccountUser);
 router.get('/updateAccountManager', Controllers.updateAccountManager);
 
+router.get('/deleteAccountAdmin', Controllers.deleteAccountAdmin);
+
 module.exports = router;

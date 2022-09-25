@@ -47,5 +47,13 @@ module.exports = {
     updateAccountManager: function(req, res){
         res.render('admin/updateAccountManager');
     },
+    deleteAccountAdmin: async function(req, res){
+        try {
+            const user = await account.deleteOne(req.params.id)
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+    }
 
 }

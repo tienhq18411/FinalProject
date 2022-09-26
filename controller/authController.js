@@ -55,5 +55,9 @@ module.exports = {
          } catch (error) {
             res.status(500).json(error);
          }
+    },
+    logout: function (req, res){
+       res.clearCookie('token');
+       res.redirect("login");
     }
 }

@@ -27,6 +27,7 @@ module.exports = {
             const hashed = await bcrypt.hash(req.body.password, salt);
 
             const newAdmin = await new account({
+                name: req.body.name,
                 username: req.body.username,
                 password: hashed,
                 role: 'admin'
@@ -39,13 +40,20 @@ module.exports = {
         } 
     },
     updateAccountAdmin: async function(req, res){
-        const username = req.params.username;
-        const newAccount = await account.findOne({username: username})
+        const id = req.params.id;
+        const newAccount = await account.findOne({id: id, role :'admin'})
        res.render('admin/updateAccountAdmin', { newAccount: newAccount});
     },
     postUpdateAccountAdmin: async function(req, res){
-        const username = req.params.username;
-        await account.findOneAndUpdate({username: username}, req.body );
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(req.body.password, salt);
+        const id = req.params.id;
+        await account.findOneAndUpdate({
+            id: id,
+            role :'admin',
+            password: hashed, 
+            username: req.body.username,
+        } );
        res.redirect('viewAccountAdmin');
        
     },

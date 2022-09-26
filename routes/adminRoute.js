@@ -14,6 +14,7 @@ router.get('/viewAccountUser',Controllers.viewAccountUser);
 router.get('/viewAccountManager',Controllers.viewAccountManager);
 
 router.get('/updateAccountAdmin', Controllers.updateAccountAdmin);
+router.post('/updateAccountAdmin', Controllers.postUpdateAccountAdmin);
 router.get('/updateAccountUser', Controllers.updateAccountUser);
 router.get('/updateAccountManager', Controllers.updateAccountManager);
 

@@ -7,22 +7,26 @@
     <title>update account admin</title>
 </head>
 <body>
+    
     <center>
-        <table>
+        <form action="/admin/updateAccountAdmin" + {{newAccount.username}} method="post">
+            
+            <table>
+            
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="Name"></td>
+                <td><input type="text" name="Name" value=""></td>
             </tr>
             <tr>
                 <td>username</td>
-                <td><input type="text" name="username"></td>
+                <td><input type="text" name="username" value="" + {{newAccount.username}}>{{newAccount.username}}</td>
             </tr>
             <tr>
                 <td>password</td>
-                <td><input type="text" name="password"></td>
+                <td><input type="text" name="password" >{{newAccount.password}}</td>
             </tr>
             <tr>
-                <td>email</td>
+                <td>role</td>
                 <td><input type="text" name="email"></td>
             </tr>
         <tr>
@@ -32,6 +36,8 @@
         </tr>
         
         </table>
+        </form>
+        
     </center>
 </body>
     

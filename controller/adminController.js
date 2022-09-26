@@ -29,7 +29,7 @@ module.exports = {
             const newAdmin = await new account({
                 username: req.body.username,
                 password: hashed,
-                role: req.body.role
+                role: 'admin'
             });
             const newUser = await newAdmin.save();
             res.redirect('viewAccountAdmin');
@@ -38,8 +38,16 @@ module.exports = {
             res.status(500).json(err);
         } 
     },
-    updateAccountAdmin: function(req, res){
-        res.render('admin/updateAccountAdmin');
+    updateAccountAdmin: async function(req, res){
+        const username = req.params.username;
+        const newAccount = await account.findOne({username: username})
+       res.render('admin/updateAccountAdmin', { newAccount: newAccount});
+    },
+    postUpdateAccountAdmin: async function(req, res){
+        const username = req.params.username;
+        await account.findOneAndUpdate({username: username}, req.body );
+       res.redirect('viewAccountAdmin');
+       
     },
     updateAccountUser: function(req, res){
         res.render('admin/updateAccountUser');
@@ -48,12 +56,8 @@ module.exports = {
         res.render('admin/updateAccountManager');
     },
     deleteAccountAdmin: async function(req, res){
-        try {
             const user = await account.deleteOne(req.params.id)
-        } catch (err) {
-            console.log(err);
-            res.status(500).json(err);
-        }
+            res.redirect('viewAccountAdmin');
     }
 
 }

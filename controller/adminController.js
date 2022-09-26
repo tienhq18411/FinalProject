@@ -51,8 +51,10 @@ module.exports = {
         await account.findOneAndUpdate({
             id: id,
             role :'admin',
+            name: req.body.name,
             password: hashed, 
             username: req.body.username,
+            
         } );
        res.redirect('viewAccountAdmin');
        

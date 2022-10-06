@@ -1,9 +1,8 @@
 body{
     background-color: red;
+    margin: 1000;
+    padding: 1000000;
 }
 form{
     background-color:blue
-}
-uname{
-    background-color: red;
 }

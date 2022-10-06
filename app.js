@@ -7,7 +7,6 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
-
 var hbs = require("hbs");
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials", function (err) {});
@@ -20,23 +19,20 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-
-
 var authRoutes = require("./routes/authRoute");
 var adminRoutes = require("./routes/adminRoute");
-var managerRoutes = require("./routes/managerRoute");
+var hostRoutes = require("./routes/hostRoute");
 var userRoutes = require("./routes/userRoute");
-
 
 app.get("/", function (req, res) {
   res.redirect("auth/login");
 });
 
 app.use("/auth", authRoutes);
-app.use('/admin',adminRoutes);
-app.use('/manager', managerRoutes);
-app.use('/user',userRoutes);
+app.use("/admin", adminRoutes);
+app.use("/host", hostRoutes);
+app.use("/user", userRoutes);
 
-var PORT = process.env.PORT || 3000
+var PORT = process.env.PORT || 3000;
 app.listen(PORT);
 console.log("Server is running on port: " + PORT);

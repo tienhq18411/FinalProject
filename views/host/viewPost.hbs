@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/host/createPost"> create post</a>
+    <table>
+        <tr>
+            <th>title</th>
+            <th>size</th>
+            <th>price</th>
+            <th>services Price</th>
+            <th>address</th>
+            <th>furniture</th>
+            <th>convenience</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {{#each post}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{size}}</td>
+            <td>{{price}}</td>
+            <td>{{servicesPrice}}</td>
+            <td>{{address}}</td>
+            <td>{{furniture}}</td>
+            <td>{{convenience}}</td>
+            <td><a href="/host/updatePost">update</a></td>
+            <td><a href="/host/deletePost" >delete</a></td>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>

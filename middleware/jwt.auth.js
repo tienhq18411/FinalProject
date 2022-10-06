@@ -42,9 +42,9 @@ module.exports = {
            }
             
     }, 
-    checkManager: function (req, res, next) {
+    checkHost: function (req, res, next) {
            var role = req.data.role;
-           if(role === 'manager'){
+           if(role === 'host'){
             console.log(req.data);
             next();
            } else{

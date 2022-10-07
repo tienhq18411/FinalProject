@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div class="navtop">
+        <a href="home">Home</a>
+        <a href="/auth/login">login</a>
+        <a href="/auth/register">register</a>
+        <div class="search">
+            <form >
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="bodypost">
+        <div class="title-post">
+            <p>I love working on fresh designs that
+            {{#each post}}
+            <ul>
+                {{title}}
+            </ul>
+             {{/each}}
+        </div>
+    </div>
+    
+    <style>
+        body{
+            background-color: rgb(245, 248, 248);
+        }
+       
+        
+        .navtop{
+            background-color: rgb(246, 252, 252);
+            float: right;
+        }
+        .search {
+            float: right;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+         a{
+            float: left;  
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+             a:hover {
+  background-color: rgb(30, 44, 165);
+  color: white;
+}
+a.active {
+  color: white;
+}
+        
+    </style>
+</body>
+</html>

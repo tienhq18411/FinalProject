@@ -9,7 +9,7 @@ var mongoose = require("mongoose");
 
 var hbs = require("hbs");
 app.set("view engine", "hbs");
-hbs.registerPartials(__dirname + "/views/partials", function (err) {});
+hbs.registerPartials(__dirname + "/views/partial");
 
 require("./models/db");
 

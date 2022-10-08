@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = {
-  home: async function(req, res){
+  home: async function (req, res) {
     const post = await Post.find();
-    res.render("auth/home", { post: post })
+    res.render("auth/home", { post: post });
   },
   register: function (req, res, next) {
     res.render("auth/register");

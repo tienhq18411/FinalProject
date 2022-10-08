@@ -23,7 +23,7 @@
     </div>
     <div class="bodypost">
         {{#each post}}
-        <div class="post" >
+        <div class="post">
             
             <div class="border-post"> 
             <div class="title-post" >
@@ -31,24 +31,13 @@
                 
             </div>
             <div class="content-post">
-                <table>
-                    <td>
-                        <ul>size: </ul>
-                        <ul>price: </ul>
-                        <ul>Services Price: </ul>
-                        <ul>address: </ul>
-                        <ul>furniture: </ul>
-                        <ul>convenience: </ul>
-                    </td>
-                    <td>
-                        <ul>{{size}}</ul>
-                        <ul>{{price}}</ul>
-                        <ul>{{servicesPrice}}</ul>
-                        <ul>{{address}}</ul>
-                        <ul>{{furniture}}</ul>
-                        <ul>{{convenience}} </ul>
-                    </td>
-                </table>
+                
+                size: {{size}} <br>
+                price: {{price}}<br>
+                Services Price: <br> {{servicesPrice}}<br>
+                address: {{address}}<br>
+                furniture: {{furniture}}<br>
+                convenience: {{convenience}}<br> 
             </div>
             </div>
         </div>
@@ -77,7 +66,7 @@
             font-size: 17px;
         }
         
-        a{
+         a{
             float: left;  
             display: block;
             color: black;
@@ -105,9 +94,7 @@
             background-color:white;
             max-width: 1000px;
             padding: 34px;
-            border: ;
-           
-            
+ 
         }
         .border-post{
             padding: 1px;
@@ -121,10 +108,11 @@
         
         .content-post{
             background-color: white;
-            font-size: 27px;
-            padding: 14px; 
+            font-size: 19px;
+            padding: 10px;
+            
+           
         }
-        
         
         
     </style>

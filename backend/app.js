@@ -10,6 +10,7 @@ var mongoose = require("mongoose");
 var hbs = require("hbs");
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partial");
+app.use(express.static(__dirname + "/public"));
 
 require("./models/db");
 

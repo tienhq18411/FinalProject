@@ -1,0 +1,11 @@
+body{
+    background-color: red;
+}
+.bodypost{
+    background-color:rgb(153, 26, 26);
+    margin:  auto;
+    align-items:center;
+    width: 70%;
+    padding-top: 10px;
+    
+}

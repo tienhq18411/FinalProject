@@ -64,4 +64,13 @@ module.exports = {
     res.clearCookie("token");
     res.redirect("login");
   },
+  search: async function (req, res) {
+    const data = await Post.find({
+      $or: [
+        { title: { $regex: req.params.key } },
+        { convenience: { $regex: req.params.key } },
+      ],
+    });
+    res.render("auth/home", { post: data });
+  },
 };

@@ -1,8 +1,8 @@
 body{
-    background-color: red;
+    background-color: rgb(20, 17, 17);
 }
 .bodypost{
-    background-color:rgb(153, 26, 26);
+    background-color:rgb(37, 35, 35);
     margin:  auto;
     align-items:center;
     width: 70%;

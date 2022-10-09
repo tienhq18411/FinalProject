@@ -7,14 +7,15 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
+app.use(express.static("public"));
+
 var hbs = require("hbs");
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partial");
-app.use(express.static(__dirname + "/public"));
 
 require("./models/db");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cookieParser());

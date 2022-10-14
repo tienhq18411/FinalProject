@@ -65,13 +65,24 @@ module.exports = {
     res.redirect("login");
   },
   search: async function (req, res) {
-    let searchOptions = {};
-    const data = await Post.find({
-      $or: [
-        { title: { $regex: req.params.key } },
-        { convenience: { $regex: req.params.key } },
-      ],
-    });
-    res.render("auth/home", { post: data });
+    try {
+      const post = await Post.find(
+        {
+          $or: [
+            { title: { $regex: req.query.key } },
+            { convenience: { $regex: req.query.key } },
+          ],
+        },
+        (err, post) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("auth/home", { post: post });
+          }
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   },
 };

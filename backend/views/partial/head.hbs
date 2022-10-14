@@ -10,16 +10,10 @@
         <a href="/auth/register">register</a>
         <a href="/auth/logout">logout</a>
         <div class="search">
-            <form >
-                <input type="text" placeholder="Search.." id="search-item"
-                onkeyup="search()">
-               <button >Search </button>
+            <form action="/auth/search">
+                <input type="text" name="key">
+               <button type="submit">Search </button>
             </form>
-            <script>
-                function search(){
-                    const searchBox = document.getElementById("search-item")
-                }
-            </script>
         </div>
     </div>
     <style>

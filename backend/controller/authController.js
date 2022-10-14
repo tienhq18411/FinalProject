@@ -65,6 +65,7 @@ module.exports = {
     res.redirect("login");
   },
   search: async function (req, res) {
+    let searchOptions = {};
     const data = await Post.find({
       $or: [
         { title: { $regex: req.params.key } },

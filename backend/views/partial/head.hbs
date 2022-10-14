@@ -3,23 +3,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link  rel="stylesheet" href="/backend/public/style.css" >
+<link rel="stylesheet" type="text/css" href="/style.css" />
     <div class="navtop">
         <a href="home">Home</a>
         <a href="/auth/login">login</a>
         <a href="/auth/register">register</a>
         <a href="/auth/logout">logout</a>
         <div class="search">
-
-            <form  >
-                <input type="text" placeholder="Search.." 
-                name="search">
-               <button>Search </button>
+            <form >
+                <input type="text" placeholder="Search.." id="search-item"
+                onkeyup="search()">
+               <button >Search </button>
             </form>
-            
+            <script>
+                function search(){
+                    const searchBox = document.getElementById("search-item")
+                }
+            </script>
         </div>
     </div>
-  
     <style>
       .navtop{
     background-color: rgb(246, 252, 252);
@@ -47,6 +49,5 @@ a:hover {
 a.active {
     color: whitesmoke;
 }
-
     </style>
     </head>

@@ -41,9 +41,8 @@ module.exports = {
     }
   },
   updateAccountAdmin: async function (req, res) {
-    const id = mongoose.Types.ObjectId(id);
-    const newAccount = await account.findById(id);
-    console.log(newAccount);
+    const id = req.params.id;
+    const newAccount = await account.findOne({ id: id, role: "admin" });
     res.render("admin/updateAccountAdmin", { newAccount: newAccount });
   },
   postUpdateAccountAdmin: async function (req, res) {

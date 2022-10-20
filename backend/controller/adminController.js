@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
 const account = require("../models/accounts");
 
 module.exports = {
@@ -32,7 +33,7 @@ module.exports = {
         password: hashed,
         role: "admin",
       });
-      const newUser = await newAdmin.save();
+      await newAdmin.save();
       res.redirect("viewAccountAdmin");
     } catch (err) {
       console.log(err);
@@ -40,15 +41,16 @@ module.exports = {
     }
   },
   updateAccountAdmin: async function (req, res) {
-    const id = req.params.id;
-    const newAccount = await account.findOne({ id: id, role: "admin" });
+    const id = mongoose.Types.ObjectId(id);
+    const newAccount = await account.findById(id);
+    console.log(newAccount);
     res.render("admin/updateAccountAdmin", { newAccount: newAccount });
   },
   postUpdateAccountAdmin: async function (req, res) {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(req.body.password, salt);
     const id = req.params.id;
-     account.findOneAndUpdate({
+    account.findOneAndUpdate({
       id: id,
       role: "admin",
       name: req.body.name,
@@ -64,7 +66,7 @@ module.exports = {
     res.render("admin/updateAccountHost");
   },
   deleteAccountAdmin: async function (req, res) {
-    const user = await account.deleteOne(req.params.id);
+    const user = await account.findByIdAndDelete(req.params.id);
     res.redirect("viewAccountAdmin");
   },
 };

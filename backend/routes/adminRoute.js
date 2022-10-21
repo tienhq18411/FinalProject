@@ -17,11 +17,11 @@ router.post("/createAccountAdmin", Controllers.postCreateAccountAdmin);
 router.get("/viewAccountUser", Controllers.viewAccountUser);
 router.get("/viewAccountHost", Controllers.viewAccountHost);
 
-router.get("/updateAccountAdmin", Controllers.updateAccountAdmin);
+router.get("/updateAccountAdmin/:id", Controllers.updateAccountAdmin);
 router.post("/updateAccountAdmin", Controllers.postUpdateAccountAdmin);
 router.get("/updateAccountUser", Controllers.updateAccountUser);
 router.get("/updateAccountHost", Controllers.updateAccountHost);
 
-router.get("/deleteAccountAdmin", Controllers.deleteAccountAdmin);
+router.get("/deleteAccountAdmin/:id", Controllers.deleteAccountAdmin);
 
 module.exports = router;

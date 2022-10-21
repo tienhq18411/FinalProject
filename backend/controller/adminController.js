@@ -34,7 +34,7 @@ module.exports = {
         role: "admin",
       });
       await newAdmin.save();
-      res.redirect("viewAccountAdmin");
+      res.redirect("/admin/viewAccountAdmin");
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -42,21 +42,20 @@ module.exports = {
   },
   updateAccountAdmin: async function (req, res) {
     const id = req.params.id;
-    const newAccount = await account.findOne({ id: id, role: "admin" });
-    res.render("admin/updateAccountAdmin", { newAccount: newAccount });
+    const newAccount = await account.findById(id);
+    res.render(`admin/updateAccountAdmin`, { newAccount: newAccount });
   },
   postUpdateAccountAdmin: async function (req, res) {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(req.body.password, salt);
-    const id = req.params.id;
-    account.findOneAndUpdate({
-      id: id,
-      role: "admin",
+    const id = req.body.id;
+    await account.findByIdAndUpdate(id, {
       name: req.body.name,
-      password: hashed,
       username: req.body.username,
+      password: hashed,
+      role: "admin",
     });
-    res.redirect("viewAccountAdmin");
+    res.redirect("/admin/viewAccountAdmin");
   },
   updateAccountUser: function (req, res) {
     res.render("admin/updateAccountUser");
@@ -65,7 +64,7 @@ module.exports = {
     res.render("admin/updateAccountHost");
   },
   deleteAccountAdmin: async function (req, res) {
-    const user = await account.findByIdAndDelete(req.params.id);
-    res.redirect("viewAccountAdmin");
+    await account.findByIdAndRemove(req.params.id);
+    res.redirect("/admin/viewAccountAdmin");
   },
 };

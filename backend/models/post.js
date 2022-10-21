@@ -5,12 +5,13 @@ const Schema = mongoose.Schema;
 const post = mongoose.Schema({
   title: String,
   size: String,
-  password: String,
   price: String,
   servicesPrice: String,
   address: String,
   furniture: String,
   convenience: String,
+  status: String,
+  
 });
 
 module.exports = mongoose.model("post ", post);

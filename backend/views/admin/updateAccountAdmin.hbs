@@ -10,9 +10,9 @@
     
     <center>
         
-        <form action="/admin/updateAccountAdmin"   method="post">
+        <form action="/admin/updateAccountAdmin/{{id}}"   method="post">
         
-        <input   name="id" value="{{newAccount.id}}">
+        <input type="hidden"  name="id" value="{{newAccount._id}}">
             <table>
                
             <tr>
@@ -32,7 +32,7 @@
         <tr>
             <td>
                 
-                <button >update</button>
+                <button type="submit" >update</button>
             </td>
         </tr>
         

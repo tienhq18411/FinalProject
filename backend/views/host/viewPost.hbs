@@ -10,6 +10,7 @@
     <a href="/host/createPost"> create post</a>
     <table>
         <tr>
+            <th>img</th>
             <th>title</th>
             <th>size</th>
             <th>price</th>
@@ -22,6 +23,7 @@
         </tr>
         {{#each post}}
         <tr>
+            <td><img src="uploads/{{post.img}}" alt=""></td>
             <td>{{title}}</td>
             <td>{{size}}</td>
             <td>{{price}}</td>

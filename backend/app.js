@@ -8,6 +8,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 app.use(express.static(__dirname + '/public'));
+app.use('/upload', express.static('upload'))
 
 var hbs = require("hbs");
 app.set("view engine", "hbs");

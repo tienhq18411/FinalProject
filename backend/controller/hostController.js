@@ -19,10 +19,9 @@ module.exports = {
       address: req.body.address,
       furniture: req.body.furniture,
       convenience: req.body.convenience,
+      img : req.body.img,
     });
-    if (req.file) {
-      Post.img = req.file.path;
-    }
+    
     const newPosts = await newPost.save();
     res.redirect("/host");
   },

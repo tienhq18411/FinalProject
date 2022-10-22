@@ -1,6 +1,5 @@
 const Post = require("../models/post");
 const multer = require("multer");
-const path = require("path");
 
 module.exports = {
   indexHost: async function (req, res) {
@@ -19,8 +18,9 @@ module.exports = {
       address: req.body.address,
       furniture: req.body.furniture,
       convenience: req.body.convenience,
-      img : req.body.img,
+      img : req.file.path ,
     });
+    
     
     const newPosts = await newPost.save();
     res.redirect("/host");

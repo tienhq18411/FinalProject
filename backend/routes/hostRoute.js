@@ -10,7 +10,7 @@ router.get(
   authMiddleware.checkHost,
   Controllers.indexHost
 );
-router.get("/createPost", Controllers.createPost);
+router.get("/createPost", upload.single("img"), Controllers.createPost);
 router.post("/createPost", upload.single("img"), Controllers.postCreatepost);
 
 module.exports = router;

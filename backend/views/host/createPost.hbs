@@ -8,7 +8,7 @@
 </head>
 <body>
     <center>
-     <form action="" method="post" >
+     <form action="" method="post" enctype="multipart/form-data">
     title: <input type="text" name="title" required><br>
     size: <input type="text" name="size" required><br>
     price: <input type="text" name="price" required><br>
@@ -16,7 +16,8 @@
     address: <input type="text" name="address" required><br>
     furniture: <input type="text" name="furniture" required><br>
     convenience: <input type="text" name="convenience" ><br>
-    <input  type="file" name="img" enctype="multipart/form-data"> <br>
+     <input type="file"  name="img" multiple/>
+                               
     
     <button type="submit" >create</button>
     </form>

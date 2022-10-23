@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 app.use(express.static(__dirname + '/public'));
-app.use('/upload', express.static('upload'))
+app.use('/upload', express.static('uploads'))
 
 var hbs = require("hbs");
 app.set("view engine", "hbs");
@@ -17,7 +17,7 @@ hbs.registerPartials(__dirname + "/views/partial");
 
 require("./models/db");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cookieParser());

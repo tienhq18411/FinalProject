@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const multer = require("multer");
+const fs = require("fs");
 
 module.exports = {
   indexHost: async function (req, res) {
@@ -18,24 +19,10 @@ module.exports = {
       address: req.body.address,
       furniture: req.body.furniture,
       convenience: req.body.convenience,
-      img : req.file.path ,
+      img: urlImg,
     });
-    
-    
+    console.log(newPost)
     const newPosts = await newPost.save();
-    res.redirect("/host");
-  },
-  upload: function (req, res) {
-    const storage = multer.diskStorage({
-      destination: function (req, file, data) {
-        data(null, ".public/images");
-      },
-      filename: function (req, file, data) {
-        data(null, file.originalname);
-      },
-    });
-    const upload = multer({ storage: storage });
-    upload.array("file", 10);
     res.redirect("/host");
   },
 };

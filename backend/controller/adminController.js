@@ -10,14 +10,6 @@ module.exports = {
     const accountAdmin = await account.find({ role: "admin" });
     res.render("admin/viewAccountAdmin", { accountAdmin: accountAdmin });
   },
-  viewAccountUser: async function (req, res) {
-    res.render("admin/viewAccountUser", {
-      accountAdmin: await account.find({ role: "user" }),
-    });
-  },
-  viewAccountHost: function (req, res) {
-    res.render("admin/viewAccountHost");
-  },
   createAccountAdmin: function (req, res) {
     res.render("admin/createAccountAdmin");
   },
@@ -55,12 +47,6 @@ module.exports = {
       role: "admin",
     });
     res.redirect("/admin/viewAccountAdmin");
-  },
-  updateAccountUser: function (req, res) {
-    res.render("admin/updateAccountUser");
-  },
-  updateAccountHost: function (req, res) {
-    res.render("admin/updateAccountHost");
   },
   deleteAccountAdmin: async function (req, res) {
     await account.findByIdAndRemove(req.params.id);

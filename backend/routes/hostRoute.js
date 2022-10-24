@@ -13,4 +13,9 @@ router.get(
 router.get("/createPost", Controllers.createPost);
 router.post("/createPost", upload.array("img", 10), Controllers.postCreatepost);
 
+router.get("/updatePost/:id", Controllers.updatePost);
+router.post("/updatePost", Controllers.postUpdatePost);
+
+router.get("/deletePost/:id", Controllers.deletePost);
+
 module.exports = router;

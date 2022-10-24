@@ -1,6 +1,4 @@
 const Post = require("../models/post");
-const multer = require("multer");
-const fs = require("fs");
 
 module.exports = {
   indexHost: async function (req, res) {
@@ -21,8 +19,31 @@ module.exports = {
       convenience: req.body.convenience,
       img: urlImg,
     });
-    console.log(newPost)
+    console.log(newPost);
     const newPosts = await newPost.save();
+    res.redirect("/host");
+  },
+  updatePost: async function (req, res) {
+    const id = req.params.id;
+    const newPost = await Post.findById(id);
+    res.render(`host/updatePost`, { newPost: newPost });
+  },
+  postUpdatePost: async function (req, res) {
+    const id = req.body.id;
+    await Post.findByIdAndUpdate(id, {
+      title: req.body.title,
+      size: req.body.size,
+      price: req.body.price,
+      servicesPrice: req.body.servicesPrice,
+      address: req.body.address,
+      furniture: req.body.furniture,
+      convenience: req.body.convenience,
+      img: urlImg,
+    });
+    res.redirect("/host");
+  },
+  deletePost: async function (req, res) {
+    await Post.findByIdAndRemove(req.params.id);
     res.redirect("/host");
   },
 };

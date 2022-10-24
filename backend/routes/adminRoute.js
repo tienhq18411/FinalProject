@@ -14,13 +14,8 @@ router.get("/viewAccountAdmin", Controllers.viewAccountAdmin);
 router.get("/createAccountAdmin", Controllers.createAccountAdmin);
 router.post("/createAccountAdmin", Controllers.postCreateAccountAdmin);
 
-router.get("/viewAccountUser", Controllers.viewAccountUser);
-router.get("/viewAccountHost", Controllers.viewAccountHost);
-
 router.get("/updateAccountAdmin/:id", Controllers.updateAccountAdmin);
 router.post("/updateAccountAdmin", Controllers.postUpdateAccountAdmin);
-router.get("/updateAccountUser", Controllers.updateAccountUser);
-router.get("/updateAccountHost", Controllers.updateAccountHost);
 
 router.get("/deleteAccountAdmin/:id", Controllers.deleteAccountAdmin);
 

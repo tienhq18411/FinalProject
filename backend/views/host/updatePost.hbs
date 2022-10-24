@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update account admin </title>
+</head>
+<body>
+    
+    <center>
+        
+        <form action="/admin/updatePost/{{id}}"   method="post">
+        
+        <input type="hidden"  name="id" value="{{newPost._id}}">
+            <table>   
+            <tr>
+                <td>title</td>
+                <td><input type="text" name="title" value="{{newPost.title}}"></td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td><input type="text" name="size" value="{{newPost.size}}"></td>
+            </tr>
+            <tr>
+                <td>price</td>
+                <td><input type="text" name="price"  value="{{newPost.price}}"></td>
+            </tr>
+            <tr>
+                <td>servicesPrice</td>
+                <td><input type="text" name="servicesPrice"  value="{{newPost.servicesPrice}}"></td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td><input type="text" name="address"  value="{{newPost.address}}"></td>
+            </tr>
+            <tr>
+                <td>furniture</td>
+                <td><input type="text" name="password"  value="{{newPost.furniture}}"></td>
+            </tr>
+            <tr>
+                <td>convenience</td>
+                <td><input type="text" name="password"  value="{{newPost.convenience}}"></td>
+            </tr>
+        <tr>
+            <td>
+                
+                <button type="submit" >update</button>
+            </td>
+        </tr>
+        
+        </table>
+        </form>
+    </center>
+</body>
+</html>

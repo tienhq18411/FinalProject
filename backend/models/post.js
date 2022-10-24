@@ -11,8 +11,7 @@ const post = mongoose.Schema({
   furniture: String,
   convenience: String,
   status: String,
-  img:
-    String,
+  img:[String],
 });
 
 module.exports = mongoose.model("post ", post);

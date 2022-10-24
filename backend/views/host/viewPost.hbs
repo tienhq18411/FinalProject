@@ -33,15 +33,15 @@
             <td>{{furniture}}</td>
             <td>{{convenience}}</td>
             <td >
-                    <img src="uploads/{{img}}" width="10%" > 
+            {{#each img}}
+                <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
+            {{/each}}
+                    
             </td>
             <td><a href="/host/updatePost/{{id}}">update</a></td>
             <td><a href="/host/deletePost/{{id}}" >delete</a></td>
         </tr>
         {{/each}}
     </table>
-    <script>
-        var images = []
-    </script>
 </body>
 </html>

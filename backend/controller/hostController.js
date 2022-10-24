@@ -9,6 +9,8 @@ module.exports = {
     res.render("host/createPost");
   },
   postCreatepost: async function (req, res) {
+    const arrayUrl = req.files.map((item) => item.filename);
+    console.log(arrayUrl);
     const newPost = await new Post({
       title: req.body.title,
       size: req.body.size,
@@ -17,7 +19,7 @@ module.exports = {
       address: req.body.address,
       furniture: req.body.furniture,
       convenience: req.body.convenience,
-      img: urlImg,
+      img: arrayUrl,
     });
     console.log(newPost);
     const newPosts = await newPost.save();

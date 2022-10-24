@@ -19,7 +19,9 @@
                         
                     </div>
                     <div class="content-post">
-                        <img src="uploads/{{img}}" width="10%" >{{img}}<br>
+                        {{#each img}}
+                            <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
+                        {{/each}}<br>
                         size: {{size}} <br>
                         price: {{price}}<br>
                         Services Price: {{servicesPrice}}<br>

@@ -26,7 +26,7 @@ module.exports = {
   updatePost: async function (req, res) {
     const id = req.params.id;
     const newPost = await Post.findById(id);
-    res.render(`host/updatePost`, { newPost: newPost });
+    res.render("host/updatePost", { newPost: newPost });
   },
   postUpdatePost: async function (req, res) {
     const id = req.body.id;
@@ -38,7 +38,6 @@ module.exports = {
       address: req.body.address,
       furniture: req.body.furniture,
       convenience: req.body.convenience,
-      img: urlImg,
     });
     res.redirect("/host");
   },

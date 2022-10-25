@@ -8,6 +8,16 @@ module.exports = {
     const post = await Post.find();
     res.render("auth/home", { post: post });
   },
+  viewDetail: async function (req, res) {
+    const postD = await Post.findById(req.params.id);
+    res.render("auth/detail", { postD: postD });
+  },
+  postViewDetail: async function (req, res) {
+    const id = req.body.id;
+    await Post.findById(id);
+    res.render("auth/detail");
+  },
+
   register: function (req, res, next) {
     res.render("auth/register");
   },
@@ -17,6 +27,7 @@ module.exports = {
       const hashed = await bcrypt.hash(req.body.password, salt);
 
       const newUser = await new account({
+        name: req.body.name,
         username: req.body.username,
         password: hashed,
         role: req.body.role,

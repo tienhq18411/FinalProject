@@ -7,6 +7,36 @@
     <title>Document</title>
 </head>
 <body>
-    ssss
+    <div>
+        {{#each postD}}
+        {{#each img}}
+            <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
+        {{/each}}
+        {{/each}}<br>
+    </div>
+    <table>
+        <tr>
+            <th>title</th>
+            <th>size</th>
+            <th>price</th>
+            <th>servicesPrice</th>
+            <th>address</th>
+            <th>furniture</th>
+            <th>convenience</th>
+        </tr>
+        {{#each postD}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{size}}</td>
+            <td>{{price}}</td>
+            <td>{{servicesPrice}}</td>
+            <td>{{address}}</td>
+            <td>{{furniture}}</td>
+            <td>{{convenience}}</td>
+        {{/each}}
+    </table>
+    <div>
+        <textarea name="comment" placeholder="comment" cols="200" rows="10"></textarea>
+    </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ module.exports = {
 
       Account.findOne({
         _id: isUser.id,
+        role: isUser.role
       })
         .then((data) => {
           if (data) {

@@ -1,22 +1,26 @@
 const account = require("../models/accounts");
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = {
   home: async function (req, res) {
     const post = await Post.find();
+    const Account = await account.findById(req.params.id);
     res.render("auth/home", { post: post });
   },
   viewDetail: async function (req, res) {
     const postD = await Post.findById(req.params.id);
-    res.render("auth/detail", { postD: postD });
+    const Account = await account.findOne();
+    res.render("auth/detail", { postD: postD, Account: Account });
   },
   postViewDetail: async function (req, res) {
     const id = req.body.id;
     await Post.findById(id);
     res.render("auth/detail");
   },
+  comment: function (req, res) {},
 
   register: function (req, res, next) {
     res.render("auth/register");

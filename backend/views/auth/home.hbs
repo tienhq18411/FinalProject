@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Home</title>
 </head>
 <body>
      {{> head}}
     <div class="bodypost">
-        
         {{#each post}}
         <div class="post">
             <a href="/auth/detail/{{id}}">
@@ -19,57 +18,19 @@
                         <h1>{{title}}</h1>
                         
                     </div>
-                    <div class="content-post">
-                        {{#each img}}
+                    <div class="img">
+                          {{#each img}}
                             <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
                         {{/each}}<br>
-                        size: {{size}} <br>
+                    </div>
+                    <div class="content-post">
                         price: {{price}}<br>
-                        Services Price: {{servicesPrice}}<br>
                         address: {{address}}<br>
-                        furniture: {{furniture}}<br>
                         convenience: {{convenience}}<br> 
                     </div>
                 </div>
         </div>
         {{/each}}
     </div>
-    <style>
-        .bodypost{
-            background-color:white;
-            margin:  auto;
-            align-items:center;
-            width: 70%;
-            padding-top: 10px;
-            
-        }     
-        .post{ 
-            background-color:white;
-            width: 1000px;
-            padding: 100px;
-           
-            
-        }
-        .border-post{
-            padding: 1px;
-            width: 1000px;
-            background-color: white;
-        }
-        .title-post{
-            background-color: rgb(170, 23, 23);
-             padding: 1px 300px;
-             font-size: 27px;
-        }
-        
-        .content-post{
-            background-color: white;
-            font-size: 27px;
-            padding: 14px 300px;
-            padding-left: 14px;
-           
-        }
-        
-        
-    </style>
 </body>
 </html>

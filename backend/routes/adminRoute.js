@@ -17,6 +17,9 @@ router.post("/createAccountAdmin", Controllers.postCreateAccountAdmin);
 router.get("/updateAccountAdmin/:id", Controllers.updateAccountAdmin);
 router.post("/updateAccountAdmin", Controllers.postUpdateAccountAdmin);
 
+router.get("/updateInfor/:username", Controllers.updateInfor);
+router.post("/updateInfor/:username", Controllers.postUpdateInfor);
+
 router.get("/deleteAccountAdmin/:id", Controllers.deleteAccountAdmin);
 
 module.exports = router;

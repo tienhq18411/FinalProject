@@ -1,3 +1,76 @@
-body{
-    background-color: rgb(252, 244, 244);
+
+
+.navtop{
+ background-color:white;
+ width:100%;
+ height:50px;
+text-align: center;
 }
+.search {
+    width:100%;
+    height:100px;
+    text-align: center;
+    size: 500px;
+    padding: 45px;
+    margin-top: 50px;
+    align-items: right;
+}
+input{
+    size:1rem;
+}
+.se{
+    background-color: antiquewhite;
+    height: 50px;
+    width:50%;
+}
+.td{
+    width:100%;
+    height:50px;
+}
+.bodypost{
+    background-color:white;
+    align-items:center;
+    width: 50%;
+    padding-top: 5px;
+    padding-left: 200px;
+}     
+.post{ 
+    background-color:white;
+    width: 1000px;
+    height: 100px;
+    padding: 100px;
+   
+    
+}
+.border-post{
+    padding: 1px;
+    width: 1000px;
+    background-color: white;
+}
+.title-post{
+    background-color: rgb(170, 23, 23);
+     padding: 1px 300px;
+     font-size: 20px;
+}
+
+.content-post{
+    background-color: white;
+    font-size: 20px;
+    padding: 14px 300px;
+    padding-left: 14px;
+   
+}
+a{
+    float: left;  
+    display: block;
+    color: rgb(73, 18, 18);
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 23px;
+    }
+    a:hover {
+        background-color: whitesmoke;
+    }
+    a.active {
+        color: whitesmoke;
+    }

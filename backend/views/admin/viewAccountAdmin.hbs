@@ -8,12 +8,12 @@
 </head>
 <body>
     
-    <a href="/admin/createAccountAdmin"> create account admin</a>
+    <a href="/admin/createAccountAdmin"> create account admin</a><br>
+    <a href="/admin/updateInfor/{{username}}" >updateInfor</a>
     <table>
         <tr>
             <th>Name</th>
             <th>username</th>
-            <th>password</th>
             <th></th>
             <th></th>
         </tr>
@@ -21,7 +21,6 @@
         <tr>
             <td>{{name}}</td>
             <td>{{username}}</td>
-            <td>{{password}}</td>
             <td><a href="/admin/updateAccountAdmin/{{id}}" >update</a></td>
             <td><a href="/admin/deleteAccountAdmin/{{id}}" >delete</a></td>
         </tr>

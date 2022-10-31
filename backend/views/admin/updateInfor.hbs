@@ -10,25 +10,22 @@
     
     <center>
         
-        <form action="/admin/updateAccountAdmin/{{id}}"   method="post">
+        <form action="/admin/updateInfor/{{username}}"   method="post">
         
-        <input type="hidden"  name="id" value="{{newAccount._id}}">
-        {{newAccount.role}}:{{newAccount.name}}
-            <table>
-               
+        <input type="hidden"  name="id" value="{{AccountU.username}}">
+        {{AccountU.role}}:{{AccountU.name}}
+            <table>   
             <tr>
-            
-                
                 <td>Name</td>
-                <td><input type="text" name="name" value="{{newAccount.name}}"></td>
+                <td><input type="text" name="name" value="{{AccountU.name}}"></td>
             </tr>
             <tr>
                 <td>username</td>
-                <td><input type="text" name="username" value="{{newAccount.username}}"></td>
+                <td><input type="text" name="username" value="{{AccountU.username}}"></td>
             </tr>
             <tr>
                 <td>password</td>
-                <td><input type="text" name="password"  value="{{newAccount.password}}"></td>
+                <td><input type="text" name="password"  value="{{AccountU.password}}"></td>
             </tr>
         <tr>
             <td>

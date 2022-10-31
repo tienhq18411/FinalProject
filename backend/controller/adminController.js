@@ -52,4 +52,21 @@ module.exports = {
     await account.findByIdAndRemove(req.params.id);
     res.redirect("/admin/viewAccountAdmin");
   },
+  updateInfor: async function (req, res) {
+    const username = req.params.username;
+    const AccountU = await account.findById(id);
+    res.render(`admin/updateInfor`, { AccountU: AccountU });
+  },
+  postUpdateInfor: async function (req, res) {
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(req.body.password, salt);
+    const id = req.body.id;
+    await account.findByIdAndUpdate(id, {
+      name: req.body.name,
+      username: req.body.username,
+      password: hashed,
+      role: "admin",
+    });
+    res.redirect("/admin/viewAccountAdmin");
+  },
 };

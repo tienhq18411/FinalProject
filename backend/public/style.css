@@ -3,53 +3,56 @@
 .navtop{
  background-color:white;
  width:100%;
- height:50px;
+ height:30px;
 text-align: center;
 }
 .search {
     width:100%;
-    height:100px;
+    height:30px;
     text-align: center;
-    size: 500px;
-    padding: 45px;
-    margin-top: 50px;
+    padding: 40px;
+    margin-top: 30px;
     align-items: right;
 }
-input{
-    size:1rem;
-}
 .se{
-    background-color: antiquewhite;
-    height: 50px;
-    width:50%;
+    height: 30px;
+    width:30%;
+    font-size: 20px;
 }
 .td{
+    align-items: center;
     width:100%;
-    height:50px;
+    height:30px;
+    font-size: 20px;
+    
+}
+.btn-search{
+    height: 35px;
+    width:5%;
+    font-size: 20px;
 }
 .bodypost{
     background-color:white;
     align-items:center;
     width: 50%;
-    padding-top: 5px;
     padding-left: 200px;
+    
 }     
 .post{ 
     background-color:white;
-    width: 1000px;
-    height: 100px;
+    width: 800px;
     padding: 100px;
    
     
 }
 .border-post{
     padding: 1px;
-    width: 1000px;
+    width: 800px;
     background-color: white;
 }
 .title-post{
     background-color: rgb(170, 23, 23);
-     padding: 1px 300px;
+     padding: 1px 200px;
      font-size: 20px;
 }
 
@@ -73,4 +76,22 @@ a{
     }
     a.active {
         color: whitesmoke;
+    }
+    .detail{
+        background-color: white;
+        padding-left: 300px;
+    }
+    .img{
+        width: 1000px;
+    }
+    .detail-content{
+        padding-top:50px;
+        font-size: 20px;
+    }
+    .cmt{
+        padding-left: 300px;
+        padding-top: 150px;
+    }
+    .table{
+        font-size: 20px;
     }

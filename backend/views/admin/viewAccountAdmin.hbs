@@ -7,9 +7,9 @@
     <title>account admin</title>
 </head>
 <body>
-    
-    <a href="/admin/createAccountAdmin"> create account admin</a><br>
-    <a href="/admin/updateInfor/{{username}}" >updateInfor</a>
+     {{> head}}
+   
+    <div class="table" >
     <table>
         <tr>
             <th>Name</th>
@@ -26,5 +26,9 @@
         </tr>
         {{/each}}
     </table>
+    </div>
+      <div>
+    <a href="/admin/createAccountAdmin"> create account admin</a>
+    </div>
 </body>
 </html>

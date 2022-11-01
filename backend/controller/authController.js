@@ -86,6 +86,7 @@ module.exports = {
           $or: [
             { title: { $regex: req.query.key } },
             { convenience: { $regex: req.query.key } },
+            { price: { $regex: req.query.key } },
           ],
         },
         (err, post) => {

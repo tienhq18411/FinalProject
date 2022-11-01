@@ -4,45 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" />
     <title>Document</title>
 </head>
 <body>
-    <div>
+    {{> head}}
+    <div class="detail" >
+    <div class="img">
         {{#each postD}}
         {{#each img}}
-            <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
+            <img src="http://localhost:3000/uploads/{{this}}" width="50%" > 
         {{/each}}
         {{/each}}<br>
     </div>
-    <div>
-    <table>
-        <tr>
-            <th>title</th>
-            <th>size</th>
-            <th>price</th>
-            <th>servicesPrice</th>
-            <th>address</th>
-            <th>furniture</th>
-            <th>convenience</th>
-        </tr>
-        {{#each postD}}
-        <tr>
-            <td>{{title}}</td>
-            <td>{{size}}</td>
-            <td>{{price}}</td>
-            <td>{{servicesPrice}}</td>
-            <td>{{address}}</td>
-            <td>{{furniture}}</td>
-            <td>{{convenience}}</td>
-        {{/each}}
-    </table>
+    <div class="detail-content">
+            <h1>{{postD.title}}</h1>  
+            <b> size</b>:{{postD.size}} <br>
+            <b>price</b>: {{postD.price}}<br>
+            <b>services Price</b>: <br>{{postD.servicesPrice}}<br>
+            <b>furniture</b>: {{postD.furniture}}<br>
+            <b>address</b>: {{postD.address}}<br>
+            <h3>convenience:</h3> {{postD.convenience}}<br>
+
     </div>
-    <div>
-        <textarea name="comment" placeholder="comment" cols="200" rows="10"></textarea>
     </div>
-   
-    <div>
+    <div class="cmt">
+        <textarea name="comment" placeholder="comment" cols="100" rows="10" ></textarea>
         <div>{{Account.name}}:</div>
     </div>
+ 
 </body>
 </html>

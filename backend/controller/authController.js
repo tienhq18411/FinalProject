@@ -3,7 +3,7 @@ const Post = require("../models/post");
 const Comment = require("../models/comment");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const { v4: uuidv4 } = require('uuid');
 module.exports = {
   home: async function (req, res) {
     const post = await Post.find();
@@ -18,7 +18,7 @@ module.exports = {
   postViewDetail: async function (req, res) {
     const id = req.body.id;
     await Post.findById(id);
-    res.render("auth/detail");
+    res.render("auth/detail",{ postD: postD, Account: Account });
   },
   comment: function (req, res) {},
 
@@ -29,8 +29,9 @@ module.exports = {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.password, salt);
-
+      const id = uuidv4();
       const newUser = await new account({
+        id: id,
         name: req.body.name,
         username: req.body.username,
         password: hashed,
@@ -69,7 +70,7 @@ module.exports = {
         );
 
         res.cookie("token", token);
-        res.redirect("/" + user.role);
+        res.redirect("/" );
       }
     } catch (error) {
       res.status(500).json(error);

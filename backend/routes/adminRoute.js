@@ -9,6 +9,8 @@ router.get(
   authMiddleware.checkAdmin,
   Controllers.indexAdmin
 );
+
+// manage account
 router.get("/viewAccountAdmin", Controllers.viewAccountAdmin);
 
 router.get("/createAccountAdmin", Controllers.createAccountAdmin);
@@ -17,9 +19,12 @@ router.post("/createAccountAdmin", Controllers.postCreateAccountAdmin);
 router.get("/updateAccountAdmin/:id", Controllers.updateAccountAdmin);
 router.post("/updateAccountAdmin", Controllers.postUpdateAccountAdmin);
 
-router.get("/updateInfor/:username", Controllers.updateInfor);
-router.post("/updateInfor/:username", Controllers.postUpdateInfor);
+router.get("/disableAccountAdmin/:id", Controllers.deleteAccountAdmin);
 
+// manage post
+router.get("/viewPost", Controllers.deleteAccountAdmin);
+router.get("/disablePost/:id", Controllers.deleteAccountAdmin);
+router.get("/viewComment", Controllers.deleteAccountAdmin);
 router.get("/deleteAccountAdmin/:id", Controllers.deleteAccountAdmin);
 
 module.exports = router;

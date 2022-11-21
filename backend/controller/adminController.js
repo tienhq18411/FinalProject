@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const account = require("../models/accounts");
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   indexAdmin: function (req, res) {
@@ -17,8 +18,9 @@ module.exports = {
     try {
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(req.body.password, salt);
-
+      const id = uuidv4();
       const newAdmin = await new account({
+        id: id,
         name: req.body.name,
         username: req.body.username,
         password: hashed,
@@ -49,13 +51,8 @@ module.exports = {
     res.redirect("/admin/viewAccountAdmin");
   },
   deleteAccountAdmin: async function (req, res) {
-    await account.findByIdAndRemove(req.params.id);
+    await account.findByIdAndUpdate(req.params.id,  { isActive: false} );
     res.redirect("/admin/viewAccountAdmin");
-  },
-  updateInfor: async function (req, res) {
-    const username = req.params.username;
-    const AccountU = await account.findById(id);
-    res.render(`admin/updateInfor`, { AccountU: AccountU });
   },
   postUpdateInfor: async function (req, res) {
     const salt = await bcrypt.genSalt(10);

@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-
+const { v4: uuidv4 } = require('uuid');
 module.exports = {
   indexHost: async function (req, res) {
     const post = await Post.find();
@@ -11,7 +11,9 @@ module.exports = {
   postCreatepost: async function (req, res) {
     const arrayUrl = req.files.map((item) => item.filename);
     console.log(arrayUrl);
+    const id = uuidv4()
     const newPost = await new Post({
+      id: id,
       title: req.body.title,
       size: req.body.size,
       price: req.body.price,

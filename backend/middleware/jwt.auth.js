@@ -6,9 +6,9 @@ module.exports = {
     try {
       const token = req.cookies.token;
       const isUser = jwt.verify(token, "mk");
-
+      console.log(isUser)
       Account.findOne({
-        _id: isUser.id,
+        id: isUser.id,
       })
         .then((data) => {
           if (data) {

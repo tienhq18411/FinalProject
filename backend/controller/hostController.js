@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const { v4: uuidv4 } = require('uuid');
+const jwt = require("jsonwebtoken");
 module.exports = {
   indexHost: async function (req, res) {
     const post = await Post.find();
@@ -12,6 +13,10 @@ module.exports = {
     const arrayUrl = req.files.map((item) => item.filename);
     console.log(arrayUrl);
     const id = uuidv4()
+
+    const token = jwt.verify(req.headers.cookie.slice(6), "mk")
+    console.log(token)
+    // tu token lay ra thong tin user roi xu li tiep
     const newPost = await new Post({
       id: id,
       title: req.body.title,
@@ -22,19 +27,20 @@ module.exports = {
       furniture: req.body.furniture,
       convenience: req.body.convenience,
       img: arrayUrl,
+
     });
     console.log(newPost);
-    const newPosts = await newPost.save();
+    await newPost.save();
     res.redirect("/host");
   },
   updatePost: async function (req, res) {
     const id = req.params.id;
-    const newPost = await Post.findById(id);
+    const newPost = await Post.findOne({id: id});
     res.render("host/updatePost", { newPost: newPost });
   },
   postUpdatePost: async function (req, res) {
     const id = req.body.id;
-    await Post.findByIdAndUpdate(id, {
+    await Post.findOneAndUpdate({id: id}, {
       title: req.body.title,
       size: req.body.size,
       price: req.body.price,
@@ -46,7 +52,7 @@ module.exports = {
     res.redirect("/host");
   },
   deletePost: async function (req, res) {
-    await Post.findByIdAndRemove(req.params.id);
+    await Post.findOneAndRemove(req.params.id);
     res.redirect("/host");
   },
 };

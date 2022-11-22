@@ -42,7 +42,7 @@ module.exports = {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(req.body.password, salt);
     const id = req.body.id;
-    await account.findByIdAndUpdate(id, {
+    await account.findOneAndUpdate({id: id}, {
       name: req.body.name,
       username: req.body.username,
       password: hashed,
@@ -58,7 +58,7 @@ module.exports = {
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(req.body.password, salt);
     const id = req.body.id;
-    await account.findByIdAndUpdate(id, {
+    await account.findOneAndUpdate(id, {
       name: req.body.name,
       username: req.body.username,
       password: hashed,

@@ -7,9 +7,11 @@ const account = mongoose.Schema({
   name: {type: String}, 
   username: {type: String},
   password: {type: String},
-  role: {type: String},
+  role: {type: String, default: 'host'},
+  phone: {type: String},
   isActive: {type: String, default: true},
-  createDate: {type: Date, default: new Date()}
+  createDate: {type: Date, default: new Date()},
+
 });
 
 module.exports = mongoose.model("account ", account);

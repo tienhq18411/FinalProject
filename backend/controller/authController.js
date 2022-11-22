@@ -7,20 +7,19 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
   home: async function (req, res) {
     const post = await Post.find();
-    const Account = await account.findById(req.params.id);
+    const Account = await account.findOne({id: req.params.id});
     res.render("auth/home", { post: post });
   },
-  viewDetail: async function (req, res) {
-    const postD = await Post.findById(req.params.id);
-    const Account = await account.findOne();
-    res.render("auth/detail", { postD: postD, Account: Account });
-  },
+  // viewDetail: async function (req, res) {
+  //   const postD = await Post.findOne({id: req.params.id});
+  //   res.render("auth/detail", { postD: postD });
+  // },
   postViewDetail: async function (req, res) {
     const id = req.body.id;
-    await Post.findById(id);
-    res.render("auth/detail",{ postD: postD, Account: Account });
+    const post = await Post.findOne({id: id});
+    //api lay thong tin cua comment theo id
+    res.render("auth/detail",{ postD: post });
   },
-  comment: function (req, res) {},
 
   register: function (req, res, next) {
     res.render("auth/register");
@@ -102,4 +101,36 @@ module.exports = {
       console.log(error);
     }
   },
+  changePassword: async function (req, res) {
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(req.body.newPassword, salt);
+    const id = req.body.id;
+    const user = await account.findOne({id: id})
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      res.status(404).json("wrong password");
+    }else {
+      
+    }
+    await account.findOneAndUpdate({id: id}, {
+      name: req.body.name,
+      username: req.body.username,
+      password: hashed,
+    });
+  },
+  changeUserInfo: async function (req, res) {
+    
+  },
+  commentPost: async function (req, res) {
+    const userId = req.cookies()
+    const postId = res.body.id
+    
+    const comment = await new Comment({
+      comment: res.body.comment
+    });
+    await comment.save();
+  }
 };

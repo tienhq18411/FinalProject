@@ -7,7 +7,6 @@ const upload = require("../middleware/upload");
 router.get(
   "/",
   authMiddleware.requireAuth,
-  authMiddleware.checkHost,
   Controllers.indexHost
 );
 router.get("/createPost", Controllers.createPost);

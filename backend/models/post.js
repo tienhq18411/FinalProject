@@ -21,8 +21,6 @@ const post = mongoose.Schema({
   img:[String],
   user: { type: account},
   createDate: {type: Date, default: new Date()}
-
-
 });
 
 module.exports = mongoose.model("post ", post);

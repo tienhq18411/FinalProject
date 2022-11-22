@@ -11,7 +11,7 @@
     <form method="post" ><br>
 	<input type="text" placeholder="name" name="name" required =""><br>
     <input type="text" placeholder="username" name="username" required =""><br>
-    <input type="text" placeholder="password" name="password" required=""><br>
+    <input type="password" placeholder="password" name="password" required=""><br>
     <input type="text" placeholder="role" name="role" required><br>
     <button onclick="">register</button>
     </form>
@@ -23,8 +23,8 @@
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
+	height: 70vh;
+	margin: 0;
     }
     button {
 	border-radius: 20px;
@@ -33,12 +33,16 @@
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 10px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	cursor: pointer;
     }
     form {
+	width: 50%;
+	margin-top: 10%;
+	border-radius: 8px;
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -47,6 +51,7 @@
 	padding: 0 50px;
 	height: 100%;
 	text-align: center;
+	box-shadow: 2px 2px 2px#888888;
     }
 
     input {
@@ -55,6 +60,7 @@
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	border-radius: 12px;
     }
 </style>
 </body>

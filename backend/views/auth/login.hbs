@@ -8,11 +8,15 @@
     <title>Login</title>
 </head>
 <body>
+	<div class="text">Welcome</div>
     <form method="post" ><br>
     <input type="text" placeholder="username" name="username" required><br>
-    <input type="text" placeholder="password" name="password" required><br>
-    <button  onclick="">Login</button> <br>
+    <input type="password" placeholder="password" name="password" required><br>
+    <div class="gr-btn">
+
     <button ><a href="register">register</a></button>
+	<button  onclick="">Login</button> 
+	</div>
     </form>
 <style>
     body {
@@ -22,8 +26,15 @@
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
+	height: 60vh;
+	margin: 0;
+}
+.text{
+	font-size: 36px;
+	font-weight: bold;
+	width: 50%;
+	text-align: left;
+	margin-top: 20%;
 }
 button {
 	border-radius: 20px;
@@ -32,13 +43,21 @@ button {
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 10px 40px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	cursor: pointer;
+}
+a{
+	text-decoration: none;
+	color: white;
 }
 
 form {
+	width: 50%;
+	margin-top: 10px;
+	border-radius: 8px;
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -47,6 +66,7 @@ form {
 	padding: 0 50px;
 	height: 100%;
 	text-align: center;
+	box-shadow: 2px 2px 2px#888888;
 }
 
 input {
@@ -55,6 +75,13 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	border-radius: 12px;
+}
+.gr-btn{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 16px;
 }
 </style>
 </body>

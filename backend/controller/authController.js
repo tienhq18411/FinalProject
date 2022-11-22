@@ -10,15 +10,15 @@ module.exports = {
     const Account = await account.findOne({id: req.params.id});
     res.render("auth/home", { post: post });
   },
-  viewDetail: async function (req, res) {
-    const postD = await Post.findOne({id: req.params.id});
-    const Account = await account.findOne();
-    res.render("auth/detail", { postD: postD, Account: Account });
-  },
+  // viewDetail: async function (req, res) {
+  //   const postD = await Post.findOne({id: req.params.id});
+  //   res.render("auth/detail", { postD: postD });
+  // },
   postViewDetail: async function (req, res) {
     const id = req.body.id;
-    await Post.findOne({id: id});
-    res.render("auth/detail",{ postD: postD, Account: Account });
+    const post = await Post.findOne({id: id});
+    //api lay thong tin cua comment theo id
+    res.render("auth/detail",{ postD: post });
   },
 
   register: function (req, res, next) {

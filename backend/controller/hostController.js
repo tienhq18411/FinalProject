@@ -1,4 +1,6 @@
 const Post = require("../models/post");
+const account = require("../models/accounts");
+
 const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 module.exports = {
@@ -11,11 +13,10 @@ module.exports = {
   },
   postCreatepost: async function (req, res) {
     const arrayUrl = req.files.map((item) => item.filename);
-    console.log(arrayUrl);
     const id = uuidv4()
-
-    const token = jwt.verify(req.headers.cookie.slice(6), "mk")
-    console.log(token)
+    const token = req.cookies.token;
+    const user = await account.findOne({id:jwt.verify(token, "mk").id});
+   // console.log(user)
     // tu token lay ra thong tin user roi xu li tiep
     const newPost = await new Post({
       id: id,
@@ -27,9 +28,9 @@ module.exports = {
       furniture: req.body.furniture,
       convenience: req.body.convenience,
       img: arrayUrl,
-
+      user: user
     });
-    console.log(newPost);
+    //console.log(newPost);
     await newPost.save();
     res.redirect("/host");
   },

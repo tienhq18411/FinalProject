@@ -15,12 +15,13 @@ const post = mongoose.Schema({
   price: { type: String },
   servicesPrice: { type: String },
   address: { type: String },
+  addressMap: { type: String },
   furniture: { type: String },
   convenience: { type: String },
   status: { type: String, default: 'INIT' },
   img:[String],
   user: { type: account},
-  createDate: {type: Date, default: new Date()}
+  createDate: {type: Date, default: () => Date.now()}
 });
 
 module.exports = mongoose.model("post ", post);

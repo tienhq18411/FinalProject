@@ -6,6 +6,37 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require('uuid');
 module.exports = {
   home: async function (req, res) {
+    // const project = { _id: 0 };
+    // let post;
+    // if (query._fields) {
+    //   const fields = query._fields.split(',');
+    //   fields.forEach((f) => {
+    //     project[f.trim()] = 1;
+    //   });
+    //   delete query._fields;
+    // }
+    // let sort = {
+    //   modifiedDate: -1,
+    // };
+    // if (query.sort) {
+    //   sort = CommonUtils.transformSort(query.sort) || {
+    //     modifiedDate: -1,
+    //   };
+    //   delete query.sort;
+    // }
+    // if (query.isPaging) {
+    //   const page = query.page;
+    //   const pageSize = query.pageSize;
+    //   delete query.isPaging;
+    //   delete query.page;
+    //   delete query.pageSize;
+    //   post = await Post
+    //     .find(query, project)
+    //     .sort(sort)
+    //     .skip(page * pageSize - pageSize)
+    //     .limit(pageSize);
+    // }
+    // post = await Post.find(query, project).sort(sort);
     const post = await Post.find();
     const Account = await account.findOne({id: req.params.id});
     res.render("auth/home", { post: post });

@@ -7,18 +7,23 @@ const account = mongoose.Schema({
   name: { type: String }, 
   username: { type: String },
 });
-
+const address = mongoose.Schema({
+  city: { type: String }, 
+  district: { type: String }, 
+  ward: { type: String },
+});
 const post = mongoose.Schema({
   id: { type: String },
   title: { type: String },
   size: { type: String },
   price: { type: String },
   servicesPrice: { type: String },
-  address: { type: String },
+  address: { type: address },
+  addressDetail: {type: String},
   addressMap: { type: String },
   furniture: { type: String },
   convenience: { type: String },
-  status: { type: String, default: 'INIT' },
+  status: { type: String, default: 'PENDING' },
   img:[String],
   user: { type: account},
   createDate: {type: Date, default: () => Date.now()}

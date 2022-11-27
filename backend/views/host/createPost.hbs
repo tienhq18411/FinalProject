@@ -9,10 +9,17 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+
+    <link rel="stylesheet" href="http://localhost:3000/assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="http://localhost:3000/assets/vendors/flag-icon-css/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="http://localhost:3000/assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="http://localhost:3000/assets/css/style.css" />
+    <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" />
   </head>
   <body>
-    <div
+    {{!-- <div
       class="p-5"
       style="background:url('https://images.unsplash.com/photo-1600585153490-76fb20a32601?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGhvbWVzfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); background-position: center;
   background-repeat: no-repeat;
@@ -82,27 +89,127 @@
           class="btn btn-info float-right mb-4"
         >Create</button>
       </form>
-    </div>
+    </div> --}}
+<form action="" method="post" enctype="multipart/form-data">
+   <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Tạo mới bài viết</h4>
+                    <p class="card-description">Thông tin</p>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="title">Tiêu đề</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Tiêu đề" required/>
+                      </div>
+                      <div class="form-group">
+                        <label for="price">Giá</label>
+                        <input type="text" name="price" class="form-control" id="price" placeholder="Giá" />
+                      </div>
+                      <div class="form-group">
+                        <label for="size">Diện tích</label>
+                        <input type="text" name="size" class="form-control" id="size" placeholder="Diện tích" />
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img" class="file-upload-default" multiple/>
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" />
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button"> Upload </button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleFormControlSelect1">Tỉnh/Thành phố</label>
+                      <select class="form-control form-control-lg" id="city">
+                        <option></option>
+                      </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleFormControlSelect1">Quận/Huyện</label>
+                      <select class="form-control form-control-lg" id="district">
+                        <option disabled>Quận/Huyện</option>
+                      </select>
+                      </div>
+                      <div class="form-group">
+                      <label for="exampleFormControlSelect1">Phường/Xã</label>
+                      <select class="form-control form-control-lg" id="ward">
+                        <option disabled>Phường/Xã</option>
+                      </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="address">Địa chỉ cụ thể</label>
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ cụ thể" />
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Mô tả</label>
+                        <textarea
+                          class="form-control"
+                          id="description"
+                          rows="4"
+                          name="description"
+                        ></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </form>
+    <!-- Template Javascript -->
+    <script src="http://localhost:3000/js/main.js"></script>
+    <script src="http://localhost:3000/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="http://localhost:3000/assets/vendors/select2/select2.min.js"></script>
+    <script src="http://localhost:3000/assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="http://localhost:3000/assets/js/off-canvas.js"></script>
+    <script src="http://localhost:3000/assets/js/hoverable-collapse.js"></script>
+    <script src="http://localhost:3000/assets/js/misc.js"></script>
+    <script src="http://localhost:3000/assets/js/file-upload.js"></script>
+    <script src="http://localhost:3000/assets/js/typeahead.js"></script>
+    <script src="http://localhost:3000/assets/js/select2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+      var citis = document.getElementById("city");
+      var districts = document.getElementById("district");
+      var wards = document.getElementById("ward");
+      var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", 
+        method: "GET", 
+        responseType: "application/json", 
+      };
+      var promise = axios(Parameter);
+      promise.then(function (result) {
+        renderCity(result.data);
+      });
 
-    {{! <form action="" method="post" enctype="multipart/form-data">
-        title:
-        <input required type="text" name="title" required /><br />
-        size:
-        <input type="text" name="size" required /><br />
-        price:
-        <input type="text" name="price" required /><br />
-        Services Price:
-        <input type="text" name="servicesPrice" required /><br />
-        address:
-        <input type="text" name="address" required /><br />
-        furniture:
-        <input type="text" name="furniture" required /><br />
-        convenience:
-        <input type="text" name="convenience" /><br />
-        <input type="file" name="img" multiple />
+      function renderCity(data) {
+        for (const x of data) {
+          citis.options[citis.options.length] = new Option(x.Name, x.Id);
+        }
+        citis.onchange = function () {
+          district.length = 1;
+          ward.length = 1;
+          if(this.value != ""){
+            const result = data.filter(n => n.Id === this.value);
 
-        <button type="submit">create</button>
-      </form> }}
+            for (const k of result[0].Districts) {
+              district.options[district.options.length] = new Option(k.Name, k.Id);
+            }
+          }
+        };
+        district.onchange = function () {
+          ward.length = 1;
+          const dataCity = data.filter((n) => n.Id === citis.value);
+          if (this.value != "") {
+            const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
 
+            for (const w of dataWards) {
+              wards.options[wards.options.length] = new Option(w.Name, w.Id);
+            }
+          }
+        };
+      }
+	</script>
   </body>
 </html>

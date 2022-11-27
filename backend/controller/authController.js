@@ -25,18 +25,16 @@ module.exports = {
       };
       delete query.sort;
     }
-    if (query.isPaging) {
-      const page = query.page;
-      const pageSize = query.pageSize;
-      delete query.isPaging;
-      delete query.page;
-      delete query.pageSize;
-      post = await Post
-        .find(query, project)
-        .sort(sort)
-        .skip(page * pageSize - pageSize)
-        .limit(pageSize);
-    }
+    query.status = 'APPROVED'
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 10;
+    delete query.page;
+    delete query.pageSize;
+    post = await Post
+      .find(query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
     post = await Post.find(query, project).sort(sort);
     res.render("auth/home", { post: post });
   },

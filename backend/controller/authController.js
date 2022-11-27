@@ -6,37 +6,65 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require('uuid');
 module.exports = {
   home: async function (req, res) {
-    // const project = { _id: 0 };
-    // let post;
-    // const query = req.body
-    // if (query.param) {
-    //   const fields = query._fields.split(',');
-    //   fields.forEach((f) => {
-    //     project[f.trim()] = 1;
-    //   });
-    //   delete query._fields;
-    // }
-    // let sort = {
-    //   modifiedDate: -1,
-    // };
-    // if (query.sort) {
-    //   sort = CommonUtils.transformSort(query.sort) || {
-    //     modifiedDate: -1,
-    //   };
-    //   delete query.sort;
-    // }
-    // query.status = 'APPROVED'
-    // const page = query.page || 1;
-    // const pageSize = query.pageSize || 10;
-    // delete query.page;
-    // delete query.pageSize;
-    // post = await Post
-    //   .find(query, project)
-    //   .sort(sort)
-    //   .skip(page * pageSize - pageSize)
-    //   .limit(pageSize);
-    // post = await Post.find(query, project).sort(sort);
-    post = await Post.find()
+    const project = { _id: 0 };
+    let post;
+    const query = req.query
+    console.log(query)
+    const _query = {}
+    if(query.searchKey) {
+      _query.$or = [
+        { title: { $regex: query.searchKey } },
+      ]
+    }
+    _query.$and=[]
+    if(query.city) {
+      _query.$and.push({
+        city: query.city
+      })  
+    }
+    if(query.district) {
+      _query.$and.push({
+        district: query.district 
+      })
+    }
+    if(query.ward) {
+      _query.$and.push({
+        ward: query.ward
+      })
+    }
+    if(query.minPrice || query.maxPrice) {
+      _query.$and.push({
+        price: {$gte:query.minPrice,$lte: query.maxPrice}
+      })
+    }
+    if(query.minSize || query.maxSize) {
+      _query.$and.push({
+        size: {$gte:query.minSize,$lte: query.maxSize}
+      })
+    }
+    if(!_query.$and.length) {
+      delete _query.$and
+    }
+    console.log(_query)
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    _query.status = 'PENDING'
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 9;
+    delete query.page;
+    delete query.pageSize;
+    post = await Post
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
     res.render("auth/home", { post: post });
   },
   // viewDetail: async function (req, res) {
@@ -44,10 +72,12 @@ module.exports = {
   //   res.render("auth/detail", { postD: postD });
   // },
   postViewDetail: async function (req, res) {
-    const id = req.body.id;
+    const id = req.params.id;
+    console.log(id)
     const post = await Post.findOne({id: id});
+    console.log(post.user)
     //api lay thong tin cua comment theo id
-    res.render("auth/detail",{ postD: post });
+    res.render("auth/detail",{ postD: post, user: post.user });
   },
 
   register: function (req, res, next) {

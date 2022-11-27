@@ -23,12 +23,16 @@ module.exports = {
       title: req.body.title,
       size: req.body.size,
       price: req.body.price,
-      servicesPrice: req.body.servicesPrice,
-      address: req.body.address,
-      furniture: req.body.furniture,
-      convenience: req.body.convenience,
+      city: req.body.city,
+      district: req.body.district,
+      ward: req.body.ward,
+      addressDetail: req.body.addressDetail,
+      addressMap: req.body.addressMap,
+      bed: req.body.bed,
+      bath: req.body.bath,
       img: arrayUrl,
-      user: user
+      user: user,
+      description: req.body.description
     });
     //console.log(newPost);
     await newPost.save();

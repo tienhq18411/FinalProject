@@ -19,79 +19,9 @@
     <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" />
   </head>
   <body>
-    {{!-- <div
-      class="p-5"
-      style="background:url('https://images.unsplash.com/photo-1600585153490-76fb20a32601?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGhvbWVzfGVufDB8fDB8fA%3D%3D&w=1000&q=80'); background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;height:100vh;"
-    >
-
-      <form class="container bg-light p-5 rounded-lg font-weight-bolder">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputTitle">Title</label>
-            <input required type="email" class="form-control" id="inputTitle" />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputSize">Size</label>
-            <input required type="email" class="form-control" id="inputSize" />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPrice">Price</label>
-            <input required type="email" class="form-control" id="inputPrice" />
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputServicesPrice">Services Price</label>
-            <input
-              required
-              type="text"
-              class="form-control"
-              id="inputServicesPrice"
-            />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAddress">Address</label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="inputAddress"
-            placeholder="1234 Main St"
-          />
-        </div>
-        <div class="form-group">
-          <label for="inputFurniture">Furniture</label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="inputFurniture"
-            placeholder="Apartment, studio, or floor"
-          />
-        </div>
-        <div class="form-group">
-          <label for="inputConvenience">Convenience</label>
-          <input
-            required
-            type="text"
-            class="form-control"
-            id="inputConvenience"
-            placeholder="Apartment, studio, or floor"
-          />
-        </div>
-        <div class="form-group col-md-2">
-          <input required type="file" name="img" multiple />
-        </div>
-
-        <button
-          type="submit"
-          class="btn btn-info float-right mb-4"
-        >Create</button>
-      </form>
-    </div> --}}
-<form action="" method="post" enctype="multipart/form-data">
-   <div class="col-12 grid-margin stretch-card">
+    <a href="/host"><button class="btn btn-light">Trở lại trang quản lí</button></a>
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Tạo mới bài viết</h4>
@@ -110,6 +40,14 @@
                         <input type="text" name="size" class="form-control" id="size" placeholder="Diện tích" />
                       </div>
                       <div class="form-group">
+                        <label for="price">Số lượng phòng</label>
+                        <input type="text" name="bed" class="form-control" id="bed" placeholder="Số lượng phòng" />
+                      </div>
+                      <div class="form-group">
+                        <label for="price">Số lượng nhà vệ sinh</label>
+                        <input type="text" name="bath" class="form-control" id="bath" placeholder="Số lượng nhà vệ sinh" />
+                      </div>
+                      <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="img" class="file-upload-default" multiple/>
                         <div class="input-group col-xs-12">
@@ -121,25 +59,29 @@
                       </div>
                       <div class="form-group">
                       <label for="exampleFormControlSelect1">Tỉnh/Thành phố</label>
-                      <select class="form-control form-control-lg" id="city">
+                      <select class="form-control form-control-lg" id="city" name="city">
                         <option></option>
                       </select>
                       </div>
                       <div class="form-group">
                       <label for="exampleFormControlSelect1">Quận/Huyện</label>
-                      <select class="form-control form-control-lg" id="district">
+                      <select class="form-control form-control-lg" id="district" name="district">
                         <option disabled>Quận/Huyện</option>
                       </select>
                       </div>
                       <div class="form-group">
                       <label for="exampleFormControlSelect1">Phường/Xã</label>
-                      <select class="form-control form-control-lg" id="ward">
+                      <select class="form-control form-control-lg" id="ward" name="ward">
                         <option disabled>Phường/Xã</option>
                       </select>
                       </div>
                       <div class="form-group">
                         <label for="address">Địa chỉ cụ thể</label>
-                        <input type="text" name="address" class="form-control" id="address" placeholder="Địa chỉ cụ thể" />
+                        <input type="text" name="addressDetail" class="form-control" id="address" placeholder="Địa chỉ cụ thể" />
+                      </div>
+                      <div class="form-group">
+                        <label for="address">Địa chỉ trên google map</label>
+                        <input type="text" name="addressMap" class="form-control" id="address" placeholder="Địa chỉ google map" />
                       </div>
                       <div class="form-group">
                         <label for="description">Mô tả</label>
@@ -151,7 +93,7 @@
                         ></textarea>
                       </div>
                       <button type="submit" class="btn btn-primary mr-2"> Submit </button>
-                      <button class="btn btn-light">Cancel</button>
+                     
                     </form>
                   </div>
                 </div>
@@ -185,27 +127,27 @@
 
       function renderCity(data) {
         for (const x of data) {
-          citis.options[citis.options.length] = new Option(x.Name, x.Id);
+          citis.options[citis.options.length] = new Option(x.Name, x.Name);
         }
         citis.onchange = function () {
           district.length = 1;
           ward.length = 1;
           if(this.value != ""){
-            const result = data.filter(n => n.Id === this.value);
+            const result = data.filter(n => n.Name === this.value);
 
             for (const k of result[0].Districts) {
-              district.options[district.options.length] = new Option(k.Name, k.Id);
+              district.options[district.options.length] = new Option(k.Name, k.Name);
             }
           }
         };
         district.onchange = function () {
           ward.length = 1;
-          const dataCity = data.filter((n) => n.Id === citis.value);
+          const dataCity = data.filter((n) => n.Name === citis.value);
           if (this.value != "") {
-            const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+            const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
 
             for (const w of dataWards) {
-              wards.options[wards.options.length] = new Option(w.Name, w.Id);
+              wards.options[wards.options.length] = new Option(w.Name, w.Name);
             }
           }
         };

@@ -6,6 +6,7 @@ const account = mongoose.Schema({
   id: {type: String}, 
   name: {type: String}, 
   username: {type: String},
+  createDate: {type: Date, default: () => Date.now()},
 });
 const post = mongoose.Schema({
   id: {type: String}, 
@@ -14,8 +15,8 @@ const post = mongoose.Schema({
 const commnent = mongoose.Schema(
   {
     id: {type: String},
-    commnent: {type: String},
-    account: {type: account},
+    comment: {type: String},
+    user: {type: account},
     post: {type: post},
     isActive: {type: String, default: true},
     createDate: {type: Date, default: () => Date.now()}

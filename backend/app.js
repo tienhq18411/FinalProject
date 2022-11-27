@@ -13,7 +13,21 @@ app.use('/upload', express.static('uploads'))
 var hbs = require("hbs");
 app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partial");
+hbs.registerPartial(
+  "convertDate", 
+  function(date) {
+        month = '' + (date.getMonth() + 1),
+        day = '' + date.getDate(),
+        year = date.getFullYear();
 
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [day, month, year].join('-');
+  }
+)
 
 require("./models/db");
 

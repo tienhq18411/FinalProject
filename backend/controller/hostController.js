@@ -1,6 +1,6 @@
 const Post = require("../models/post");
 const account = require("../models/accounts");
-
+const Comment = require("../models/comment")
 const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 module.exports = {
@@ -60,4 +60,20 @@ module.exports = {
     await Post.findOneAndRemove(req.params.id);
     res.redirect("/host");
   },
+
+  commentPost: async function (req, res) {
+    const postId = req.body.postId
+    const id = uuidv4()
+    const token = req.cookies.token;
+    const user = await account.findOne({id:jwt.verify(token, "mk").id});
+    const post = await Post.findOne({id: postId})
+    const comment = await new Comment({
+      comment: req.body.comment,
+      user: user,
+      post: post,
+      id: id,
+    });
+    await comment.save();
+    res.redirect(`/auth/detail/${postId}`);
+  }
 };

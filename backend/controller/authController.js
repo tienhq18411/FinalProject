@@ -73,11 +73,12 @@ module.exports = {
   // },
   postViewDetail: async function (req, res) {
     const id = req.params.id;
-    console.log(id)
     const post = await Post.findOne({id: id});
-    console.log(post.user)
+    const comment = await Comment.find({'post.id': id})
+    console.log(comment)
+    
     //api lay thong tin cua comment theo id
-    res.render("auth/detail",{ postD: post, user: post.user });
+    res.render("auth/detail",{ postD: post, user: post.user, comment: comment });
   },
 
   register: function (req, res, next) {
@@ -183,13 +184,4 @@ module.exports = {
   changeUserInfo: async function (req, res) {
     
   },
-  commentPost: async function (req, res) {
-    const userId = req.cookies()
-    const postId = res.body.id
-    
-    const comment = await new Comment({
-      comment: res.body.comment
-    });
-    await comment.save();
-  }
 };

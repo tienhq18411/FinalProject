@@ -64,7 +64,7 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">{{user.name}}</h5>
-                                <p class="mb-2 pb-1" style="color: #2b2a2a;">Đã tham gia: {{>convertDate user.createDate}}</p>
+                                <p class="mb-2 pb-1" style="color: #2b2a2a;">Joined: {{>convertDate user.createDate}}</p>
                                 <div id="hiddenPhone" class="justify-content-start rounded-3 p-2 mb-2 d-flex hidePhone"
                                 style="background-color: #efefef;">
                                 {{user.phone}}
@@ -78,10 +78,10 @@
                         </div>
                         <div>
                         <h1 class="mb-4">{{postD.title}}</h1>
-                        <p><i class="fa fa-check text-primary me-3"></i>Địa chỉ: {{postD.addressDetail}}</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Diện tích: {{postD.size}}</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Giá tiền: {{postD.price}} VND</p>
-                        <p><i class="fa fa-check text-primary me-3"></i>{{postD.bed}} phòng ngủ - {{postD.bath}} phòng tắm</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Address: {{postD.addressDetail}}</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Size: {{postD.size}}</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Price: {{postD.price}} VND</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>{{postD.bed}} Bed - {{postD.bath}} Bath</p>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Mô tả chi tiết</h1>
+                    <h1 class="mb-3">Description</h1>
                     <p>{{postD.description}}</p>
                 </div>
             </div>
@@ -100,7 +100,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Bình luận</h1>
+                    <h1 class="mb-3">Comment</h1>
                 </div>
                 {{!-- <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s"> --}}
                     <div class="comment-list">
@@ -113,7 +113,7 @@
                                 <img class="img-fluid flex-shrink-0 rounded" src="http://localhost:3000/img/avatar.svg" style="width: 45px; height: 45px;">
                                 <div class="ps-3">
                                     <h6 class="fw-bold mb-1">{{user.name}}</h6>
-                                    <small>Đã tham gia: {{>convertDate user.createDate}}</small>
+                                    <small>Joined: {{>convertDate user.createDate}}</small>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                             <div class="bg-white border rounded p-4">
                                 <div class="form-group">
                                     <input name="postId" value="{{postD.id}}" hidden>
-                                    <label for="description">Bình luận của bạn</label>
+                                    <label for="description">Your Comment</label>
                                     <textarea
                                     class="form-control"
                                     id="comment"

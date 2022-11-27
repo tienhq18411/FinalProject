@@ -6,36 +6,37 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require('uuid');
 module.exports = {
   home: async function (req, res) {
-    const project = { _id: 0 };
-    let post;
-    const query = req.body
-    if (query.param) {
-      const fields = query._fields.split(',');
-      fields.forEach((f) => {
-        project[f.trim()] = 1;
-      });
-      delete query._fields;
-    }
-    let sort = {
-      modifiedDate: -1,
-    };
-    if (query.sort) {
-      sort = CommonUtils.transformSort(query.sort) || {
-        modifiedDate: -1,
-      };
-      delete query.sort;
-    }
-    query.status = 'APPROVED'
-    const page = query.page || 1;
-    const pageSize = query.pageSize || 10;
-    delete query.page;
-    delete query.pageSize;
-    post = await Post
-      .find(query, project)
-      .sort(sort)
-      .skip(page * pageSize - pageSize)
-      .limit(pageSize);
-    post = await Post.find(query, project).sort(sort);
+    // const project = { _id: 0 };
+    // let post;
+    // const query = req.body
+    // if (query.param) {
+    //   const fields = query._fields.split(',');
+    //   fields.forEach((f) => {
+    //     project[f.trim()] = 1;
+    //   });
+    //   delete query._fields;
+    // }
+    // let sort = {
+    //   modifiedDate: -1,
+    // };
+    // if (query.sort) {
+    //   sort = CommonUtils.transformSort(query.sort) || {
+    //     modifiedDate: -1,
+    //   };
+    //   delete query.sort;
+    // }
+    // query.status = 'APPROVED'
+    // const page = query.page || 1;
+    // const pageSize = query.pageSize || 10;
+    // delete query.page;
+    // delete query.pageSize;
+    // post = await Post
+    //   .find(query, project)
+    //   .sort(sort)
+    //   .skip(page * pageSize - pageSize)
+    //   .limit(pageSize);
+    // post = await Post.find(query, project).sort(sort);
+    post = await Post.find()
     res.render("auth/home", { post: post });
   },
   // viewDetail: async function (req, res) {

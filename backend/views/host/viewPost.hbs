@@ -84,6 +84,7 @@
                             <th>Địa chỉ cụ thể</th>
                             <th>Hình ảnh</th>
                             <th>Trạng thái</th>
+                            <th>Hành động</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -99,6 +100,10 @@
                             <td>
                               <label class="badge badge-danger">Pending</label>
                             </td>
+                             <th><a href="/host/createPost"><button class="btn btn-light">Chỉnh sửa</button></a>
+                             <a href="/host/createPost"><button class="btn btn-light">Khóa bài</button></a>
+                             <a href="/host/createPost"><button class="btn btn-light">Xóa bài</button></a>
+                             </th>
                           </tr>
                           {{/each}}
                           {{!-- <tr>

@@ -5,7 +5,8 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 module.exports = {
   indexHost: async function (req, res) {
-    const post = await Post.find();
+    const token = req.cookies.token;
+    const post = await Post.find({'user.id': jwt.verify(token, "mk").id});
     res.render("host/viewPost", { post: post });
   },
   createPost: function (req, res) {

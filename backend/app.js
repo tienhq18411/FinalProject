@@ -34,6 +34,12 @@ hbs.registerHelper('ifCond', function(data,options) {
   }
   return options.inverse(this);
 });
+hbs.registerHelper('ifAdmin', function(data,options) {
+  if(data == 'admin') {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 require("./models/db");
 
 app.use(bodyParser.urlencoded({ extended: true }));

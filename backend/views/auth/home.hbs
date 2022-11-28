@@ -31,6 +31,29 @@
     <link href="http://localhost:3000/css/style.css" rel="stylesheet">
     <link href="http://localhost:3000/style.css" rel="stylesheet">
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <style>
+        .pagination {
+            display: flex;
+            gap: 5px;
+
+        }
+        .pagination div {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            font-family: "Rubik", sans-serif;
+            font-weight: 500;
+        }
+        .pagination div.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .disabled {
+          pointer-events: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -198,8 +221,25 @@
                                 </div>
                             </div>
                             {{/each}}
+                            
                             <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                                <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                                <div class="pagination pagination-centered">
+                                    {{#paginate pagination type="first"}}
+                                    <div {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">First</a></div>
+                                    {{/paginate}}
+                                    {{#paginate pagination type="previous"}}
+                                    <div {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Prev</a></div>
+                                    {{/paginate}}
+                                    {{#paginate pagination type="middle" limit="5"}}
+                                    <div {{#if active}}class="active"{{/if}}><a href="?page={{n}}">{{n}}</a></div>
+                                    {{/paginate}}
+                                    {{#paginate pagination type="next"}}
+                                    <div {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Next</a></div>
+                                    {{/paginate}}
+                                    {{#paginate pagination type="last"}}
+                                    <div {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">Last</a></div>
+                                    {{/paginate}}               
+                                </div>
                             </div>
                         </div>
                     </div>

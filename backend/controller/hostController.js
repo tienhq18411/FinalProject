@@ -6,8 +6,38 @@ const jwt = require("jsonwebtoken");
 module.exports = {
   indexHost: async function (req, res) {
     const token = req.cookies.token;
-    const post = await Post.find({'user.id': jwt.verify(token, "mk").id});
-    res.render("host/viewPost", { post: post });
+    let post = {}
+    const project = { _id: 0 };
+    const query = req.query
+    console.log(query)
+    const _query = {}
+    _query['user.id'] = jwt.verify(token, "mk").id
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    _query.status = { $nin: ['DELETED','INIT'] }
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 9;
+    delete query.page;
+    delete query.pageSize;
+    post = await Post
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
+    const count = await Post.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
+    res.render("host/viewPost", { post: post, pagination: pagination });
   },
   createPost: function (req, res) {
     res.render("host/createPost");

@@ -65,12 +65,18 @@ module.exports = {
       .sort(sort)
       .skip(page * pageSize - pageSize)
       .limit(pageSize);
+    const count = await Post.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
     const token = req.cookies.token;
     let user = {};
     if(token) {
       user = await account.findOne({id:jwt.verify(token, "mk").id});
     }
-    res.render("auth/home", { post: post ,user: user});
+    res.render("auth/home", { post: post ,user: user, pagination: pagination});
   },
   // viewDetail: async function (req, res) {
   //   const postD = await Post.findOne({id: req.params.id});

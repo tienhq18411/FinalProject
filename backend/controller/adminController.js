@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
+const Post = require("../models/post");
 const account = require("../models/accounts");
+const Comment = require("../models/comment")
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
@@ -8,8 +10,37 @@ module.exports = {
   },
 
   viewAccountAdmin: async function (req, res) {
-    const accountAdmin = await account.find({ role: "admin" });
-    res.render("admin/viewAccountAdmin", { accountAdmin: accountAdmin });
+    let user = {}
+    const project = { _id: 0 };
+    const query = req.query
+    console.log(query)
+    const _query = {}
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    _query.status = { $nin: ['INIT'] }
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 9;
+    delete query.page;
+    delete query.pageSize;
+    user = await account
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
+    const count = await account.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
+    res.render("admin/viewAccountAdmin", { user: user, pagination: pagination });
   },
   createAccountAdmin: function (req, res) {
     res.render("admin/createAccountAdmin");
@@ -66,4 +97,68 @@ module.exports = {
     });
     res.redirect("/admin/viewAccountAdmin");
   },
+  viewPost: async function (req, res) {
+    let post = {}
+    const project = { _id: 0 };
+    const query = req.query
+    console.log(query)
+    const _query = {}
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    _query.status = { $nin: ['INIT'] }
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 9;
+    delete query.page;
+    delete query.pageSize;
+    post = await Post
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
+    const count = await Post.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
+    res.render("admin/viewPostAdmin", { post: post, pagination: pagination });
+  },
+  viewComment: async function (req,res) {
+    let comment = {}
+    const project = { _id: 0 };
+    const query = req.query
+    const _query = {}
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 9;
+    delete query.page;
+    delete query.pageSize;
+    comment = await Comment
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
+    const count = await Comment.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
+    res.render("admin/viewCommentAdmin", { comment: comment, pagination: pagination });
+  }
 };

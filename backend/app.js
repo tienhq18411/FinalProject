@@ -39,7 +39,8 @@ hbs.registerHelper('ifAdmin', function(data,options) {
     return options.fn(this);
   }
   return options.inverse(this);
-});
+}); 
+hbs.registerHelper('paginate', require('handlebars-paginate'));
 require("./models/db");
 
 app.use(bodyParser.urlencoded({ extended: true }));

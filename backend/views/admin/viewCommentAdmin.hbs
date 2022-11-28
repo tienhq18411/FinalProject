@@ -44,7 +44,7 @@
   </head>
   <body>
     <a href="/admin/viewPost"><button class="btn btn-light">Post Management</button></a>
-     <a href="/admin/viewComment"><button class="btn btn-light">Comment Management</button></a>
+     <a href="/admin/viewAccountAdmin"><button class="btn btn-light">Account Management</button></a>
     <a href="/"><button class="btn btn-light">Back to home</button></a>
     <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
@@ -56,23 +56,21 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Role</th>
+                            <th>Comment</th>
+                            <th>User</th>
+                            <th>Post</th>
                             <th>Active</th>
                             <th>Create Date</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                             {{#each user}}
+                             {{#each comment}}
                           <tr>
-                            <td>{{username}}</td>
-                            <td>{{name}}</td>
-                            <td>{{phone}}</td>
-                            <td>{{role}}</td>
-                             <td>{{isActive}}</td>
+                            <td>{{comment}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{post.title}}</td>
+                            <td>{{isActive}}</td>
                             <td>{{>convertDate createDate}}</td>
                             <td><a href="/host/createPost"><button class="btn btn-light">Lock</button></a></td>
                              

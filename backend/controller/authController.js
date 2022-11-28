@@ -55,7 +55,7 @@ module.exports = {
       };
       delete query.sort;
     }
-    _query.status = 'PENDING'
+    _query.status = 'APPROVE'
     const page = query.page || 1;
     const pageSize = query.pageSize || 9;
     delete query.page;
@@ -85,11 +85,38 @@ module.exports = {
   postViewDetail: async function (req, res) {
     const id = req.params.id;
     const post = await Post.findOne({id: id});
-    const comment = await Comment.find({'post.id': id})
-    console.log(comment)
-    
+    let comment = {}
+    const project = { _id: 0 };
+    const query = req.query
+    const _query = {}
+    _query['post.id'] = id
+    let sort = {
+      createDate: -1,
+    };
+    if (query.sort) {
+      sort = CommonUtils.transformSort(query.sort) || {
+        createDate: -1,
+      };
+      delete query.sort;
+    }
+    _query.isActive = true
+    const page = query.page || 1;
+    const pageSize = query.pageSize || 3;
+    delete query.page;
+    delete query.pageSize;
+    comment = await Comment
+      .find(_query, project)
+      .sort(sort)
+      .skip(page * pageSize - pageSize)
+      .limit(pageSize);
+    const count = await Comment.countDocuments(_query)
+    const totalPage = Math.floor((count + pageSize - 1) / pageSize);
+    const pagination = {
+      page: page,
+      pageCount: totalPage
+    }
     //api lay thong tin cua comment theo id
-    res.render("auth/detail",{ postD: post, user: post.user, comment: comment });
+    res.render("auth/detail",{ postD: post, user: post.user, comment: comment, pagination: pagination });
   },
 
   register: function (req, res, next) {
@@ -105,9 +132,9 @@ module.exports = {
         name: req.body.name,
         username: req.body.username,
         password: hashed,
-        role: req.body.role,
+        phone: req.body.phone,
       });
-      const Account = await newUser.save();
+      await newUser.save();
       res.redirect("login");
     } catch (err) {
       res.status(500).json(err);
@@ -119,16 +146,18 @@ module.exports = {
   },
   postLogin: async function (req, res, next) {
     try {
-      const user = await account.findOne({ username: req.body.username });
+      const user = await account.findOne({ username: req.body.username, isActive: true });
       if (!user) {
-        res.status(404).json("wrong username");
+        res.redirect("/auth/login" );
+        return
       }
       const validPassword = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (!validPassword) {
-        res.status(404).json("wrong password");
+        res.redirect("/auth/login" );
+        return
       }
       if (user && validPassword) {
         var token = jwt.sign(

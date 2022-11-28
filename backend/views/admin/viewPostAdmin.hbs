@@ -67,7 +67,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                             {{#each post}}
+                            {{#each post}}
                           <tr>
                             <td>{{title}}</td>
                             <td>{{price}}</td>
@@ -79,11 +79,14 @@
                             <td>
                               <label class="badge badge-danger {{status}}">{{status}}</label>
                             </td>
-                             <th><a href="/admin/updateStatusPost/1"><button class="btn btn-light">View</button></a>
-                             <a href="/admin/updateStatusPost/2"><button class="btn btn-light">Approve</button></a>
-                             <a href="/admin/updateStatusPost/3"><button class="btn btn-light">Lock</button></a>
-                             <a href="/admin/updateStatusPost/4"><button class="btn btn-light">Delete</button></a>
-                             </th>
+                             <td>
+                             {{#ifStatus status 'APPROVE'}}
+                             <a href="/admin/updateStatusPost/{{id}}?action=APPROVE"><button class="btn btn-light">Approve</button></a>
+                             {{/ifStatus}}
+                             {{#ifStatus status 'PENDING'}}
+                             <a href="/admin/updateStatusPost/{{id}}?action=PENDING"><button class="btn btn-light">Lock</button></a>
+                             {{/ifStatus}}
+                             </td>
                           </tr>
                           {{/each}}
                         </tbody>

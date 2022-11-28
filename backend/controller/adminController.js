@@ -42,6 +42,12 @@ module.exports = {
     }
     res.render("admin/viewAccountAdmin", { user: user, pagination: pagination });
   },
+  lockAccount: async function (req,res) {
+    const id = req.params.id
+    const active = req.query.active
+    await account.updateOne({id: id}, {isActive: active})
+    res.redirect(`/admin/viewAccountAdmin`);
+  },
   createAccountAdmin: function (req, res) {
     res.render("admin/createAccountAdmin");
   },
@@ -130,6 +136,13 @@ module.exports = {
     }
     res.render("admin/viewPostAdmin", { post: post, pagination: pagination });
   },
+  updateStatusPost: async function (req,res) {
+    const id = req.params.id
+    const status = req.query.action
+    await Post.updateOne({id: id}, {status: status})
+    res.redirect(`/admin/viewPost`);
+  }
+  ,
   viewComment: async function (req,res) {
     let comment = {}
     const project = { _id: 0 };
@@ -160,5 +173,11 @@ module.exports = {
       pageCount: totalPage
     }
     res.render("admin/viewCommentAdmin", { comment: comment, pagination: pagination });
+  },
+  lockComment: async function (req,res) {
+    const id = req.params.id
+    const active = req.query.active
+    await Comment.updateOne({id: id}, {isActive: active})
+    res.redirect(`/admin/viewComment`);
   }
 };

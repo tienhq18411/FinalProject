@@ -40,6 +40,13 @@ hbs.registerHelper('ifAdmin', function(data,options) {
   }
   return options.inverse(this);
 }); 
+hbs.registerHelper('ifStatus', function(data,status,options) {
+  if(data != status) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}); 
+
 hbs.registerHelper('paginate', require('handlebars-paginate'));
 require("./models/db");
 

@@ -74,10 +74,10 @@
                             <td>{{role}}</td>
                              <td>{{isActive}}</td>
                             <td>{{>convertDate createDate}}</td>
-                            <td>{{#ifStatus isActive 'true'}}
+                            <td>{{#ifStatus isActive true}}
                                 <a href="/admin/lockAccount/{{id}}?active=true"><button class="btn btn-light">UnLock</button></a>
                                 {{/ifStatus}}
-                                {{#ifStatus isActive 'false'}}
+                                {{#ifStatus isActive false}}
                                 <a href="/admin/lockAccount/{{id}}?active=false"><button class="btn btn-light">Lock</button></a>
                                 {{/ifStatus}}</td>
                              

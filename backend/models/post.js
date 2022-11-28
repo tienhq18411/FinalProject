@@ -8,6 +8,7 @@ const account = mongoose.Schema({
   username: { type: String },
   phone: {type: String},
   createDate: {type: Date, default: () => Date.now()},
+  isActive: {type: Boolean}
 });
 const post = mongoose.Schema({
   id: { type: String },

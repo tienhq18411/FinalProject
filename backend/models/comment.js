@@ -18,7 +18,7 @@ const commnent = mongoose.Schema(
     comment: {type: String},
     user: {type: account},
     post: {type: post},
-    isActive: {type: String, default: true},
+    isActive: {type: Boolean, default: true},
     createDate: {type: Date, default: () => Date.now()}
   },
   { timestamps: true }

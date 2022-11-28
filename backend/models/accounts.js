@@ -9,7 +9,7 @@ const account = mongoose.Schema({
   password: {type: String},
   role: {type: String, default: 'host'},
   phone: {type: String},
-  isActive: {type: String, default: true},
+  isActive: {type: Boolean, default: true},
   createDate: {type: Date, default: () => Date.now()},
 
 });

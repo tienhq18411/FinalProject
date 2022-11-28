@@ -46,6 +46,7 @@ module.exports = {
     const id = req.params.id
     const active = req.query.active
     await account.updateOne({id: id}, {isActive: active})
+    await Post.updateMany({'user.id': id}, {'user.isActive': active})
     res.redirect(`/admin/viewAccountAdmin`);
   },
   createAccountAdmin: function (req, res) {

@@ -56,6 +56,7 @@ module.exports = {
       delete query.sort;
     }
     _query.status = 'APPROVE'
+    _query['user.isActive'] = true
     const page = query.page || 1;
     const pageSize = query.pageSize || 9;
     delete query.page;
@@ -78,10 +79,7 @@ module.exports = {
     }
     res.render("auth/home", { post: post ,user: user, pagination: pagination});
   },
-  // viewDetail: async function (req, res) {
-  //   const postD = await Post.findOne({id: req.params.id});
-  //   res.render("auth/detail", { postD: postD });
-  // },
+
   postViewDetail: async function (req, res) {
     const id = req.params.id;
     const post = await Post.findOne({id: id});
@@ -115,8 +113,13 @@ module.exports = {
       page: page,
       pageCount: totalPage
     }
+    const token = req.cookies.token;
+    let user = {};
+    if(token) {
+      user = await account.findOne({id:jwt.verify(token, "mk").id});
+    }
     //api lay thong tin cua comment theo id
-    res.render("auth/detail",{ postD: post, user: post.user, comment: comment, pagination: pagination });
+    res.render("auth/detail",{ postD: post, userRole: user, user: post.user, comment: comment, pagination: pagination });
   },
 
   register: function (req, res, next) {

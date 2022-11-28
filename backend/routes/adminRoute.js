@@ -11,19 +11,19 @@ router.get(
 );
 
 // manage account
-router.get("/viewAccountAdmin", Controllers.viewAccountAdmin);
-router.get("/updateAccountAdmin/:id", Controllers.updateAccountAdmin);
-router.post("/updateAccountAdmin", Controllers.postUpdateAccountAdmin);
+router.get("/viewAccountAdmin",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewAccountAdmin);
+router.get("/updateAccountAdmin/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.updateAccountAdmin);
+router.post("/updateAccountAdmin",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.postUpdateAccountAdmin);
 
-router.get("/lockAccount/:id", Controllers.lockAccount);
+router.get("/lockAccount/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.lockAccount);
 
 // manage post
-router.get("/viewPost", Controllers.viewPost);
-router.get("/viewPost/:id", Controllers.viewPost);
-router.get("/updateStatusPost/:id", Controllers.updateStatusPost);
+router.get("/viewPost",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewPost);
+router.get("/viewPost/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewPost);
+router.get("/updateStatusPost/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.updateStatusPost);
 //manage comment
-router.get("/viewComment", Controllers.viewComment);
-router.get("/lockComment/:id", Controllers.lockComment);
+router.get("/viewComment",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewComment);
+router.get("/lockComment/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.lockComment);
 
 
 module.exports = router;

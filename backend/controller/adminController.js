@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   indexAdmin: function (req, res) {
-    res.render("admin/admin");
+    res.redirect(`/admin/viewAccountAdmin`);
   },
 
   viewAccountAdmin: async function (req, res) {

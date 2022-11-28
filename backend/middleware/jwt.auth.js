@@ -6,11 +6,12 @@ module.exports = {
     try {
       const token = req.cookies.token;
       const isUser = jwt.verify(token, "mk");
-      Account.findOne({
+      await Account.findOne({
         id: isUser.id,
       })
         .then((data) => {
           if (data) {
+            console.log(data)
             req.data = data;
             next();
           } else {

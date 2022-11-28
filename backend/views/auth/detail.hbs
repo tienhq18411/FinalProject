@@ -51,6 +51,10 @@
         .disabled {
           pointer-events: none;
         }
+        .img-custom {
+            width: auto;
+            height: 564px;
+        }
     </style>
 </head>
 
@@ -71,7 +75,26 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                         <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                            <img class="img-fluid w-100" src="http://localhost:3000/img/about.jpg">
+     
+                            <div class="img-fluid w-100 animated fadeIn">
+                    <div class="owl-carousel header-carousel">
+                         {{#ifLength postD.img}}
+                            {{#each postD.img}}
+                                <div class="owl-carousel-item">
+                                    <img class="img-fluid img-custom" src="http://localhost:3000/uploads/{{this}}" alt="">
+                                 </div>
+                            {{/each}}
+                            {{else}}
+                                <div class="owl-carousel-item">
+                                    <img class="img-fluid" src="http://localhost:3000/img/carousel-1.jpg" alt="">
+                                        
+                                </div>
+                            <div class="owl-carousel-item">
+                                <img class="img-fluid" src="http://localhost:3000/img/carousel-2.jpg" alt="">
+                            </div>
+                        {{/ifLength}}
+                    </div>
+                </div>
                         </div>
                     </div>
                     
@@ -141,7 +164,7 @@
                         </div>
                     </div>
                      {{/each}}
-                      <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
                 <div class="pagination pagination-centered">
                     {{#paginate pagination type="first"}}
                     <div {{#if disabled}}class="disabled"{{/if}}><a href="?page={{n}}">First</a></div>

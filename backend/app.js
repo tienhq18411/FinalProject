@@ -46,6 +46,13 @@ hbs.registerHelper('ifStatus', function(data,status,options) {
   }
   return options.inverse(this);
 }); 
+hbs.registerHelper('ifLength', function(data,options) {
+  if(data.length) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}); 
+
 
 hbs.registerHelper('paginate', require('handlebars-paginate'));
 require("./models/db");

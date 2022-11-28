@@ -65,7 +65,12 @@ module.exports = {
       .sort(sort)
       .skip(page * pageSize - pageSize)
       .limit(pageSize);
-    res.render("auth/home", { post: post });
+    const token = req.cookies.token;
+    let user = {};
+    if(token) {
+      user = await account.findOne({id:jwt.verify(token, "mk").id});
+    }
+    res.render("auth/home", { post: post ,user: user});
   },
   // viewDetail: async function (req, res) {
   //   const postD = await Post.findOne({id: req.params.id});

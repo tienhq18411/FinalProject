@@ -63,7 +63,7 @@
     <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2/select2.min.css" />
     <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="http://localhost:3000/assets/css/style.css" />
-    <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" />
+    {{!-- <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" /> --}}
   </head>
   <body>
      <a href="/host/createPost"><button class="btn btn-light">Create New Post</button></a>
@@ -98,9 +98,9 @@
                                 <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
                             {{/each}}</td>
                             <td>
-                              <label class="badge badge-danger">Pending</label>
+                              <label class="badge badge-danger {{status}}">{{status}}</label>
                             </td>
-                             <th><a href="/host/createPost"><button class="btn btn-light">Edit</button></a>
+                             <th><a href="/host/updatePost/{{id}}"><button class="btn btn-light">Edit</button></a>
                              <a href="/host/createPost"><button class="btn btn-light">Lock</button></a>
                              <a href="/host/createPost"><button class="btn btn-light">Delete</button></a>
                              </th>
@@ -145,6 +145,28 @@
                 </div>
               </div>
 </div>
+<style>
+  .INIT {
+    border: 1px solid grey;
+    background-color: grey;
+  }
+  .PENDING {
+    border: 1px solid orange;
+    background-color: orange;
+  }
+  .APPROVE {
+    border: 1px solid green;
+    background-color: green;
+  }
+  .BAN {
+    border: 1px solid red;
+    background-color: red;
+  }
+  .LOCK {
+    border: 1px solid black;
+    background-color: black;
+  }
+</style>
 <!-- Template Javascript -->
     <script src="http://localhost:3000/js/main.js"></script>
     <script src="http://localhost:3000/assets/vendors/js/vendor.bundle.base.js"></script>

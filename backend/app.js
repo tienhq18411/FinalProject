@@ -12,7 +12,7 @@ app.use('/upload', express.static('uploads'))
 
 var hbs = require("hbs");
 app.set("view engine", "hbs");
-hbs.registerPartials(__dirname + "/views/partial");
+hbs.registerPartials(__dirname + "/views/partial",'{{role}}');
 hbs.registerPartial(
   "convertDate", 
   function(date) {
@@ -28,7 +28,12 @@ hbs.registerPartial(
     return [day, month, year].join('-');
   }
 )
-
+hbs.registerHelper('ifCond', function(data,options) {
+  if(data != 'admin' && data !='host') {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 require("./models/db");
 
 app.use(bodyParser.urlencoded({ extended: true }));

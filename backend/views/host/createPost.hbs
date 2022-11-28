@@ -16,16 +16,16 @@
     <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2/select2.min.css" />
     <link rel="stylesheet" href="http://localhost:3000/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <link rel="stylesheet" href="http://localhost:3000/assets/css/style.css" />
-    <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" />
+    {{!-- <link rel="shortcut icon" href="http://localhost:3000/assets/images/favicon.png" /> --}}
   </head>
   <body>
-    <a href="/host"><button class="btn btn-light">Trở lại trang quản lí</button></a>
+    <a href="/host"><button class="btn btn-light">Back to manage page</button></a>
     <form action="" method="post" enctype="multipart/form-data">
       <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Create New Post</h4>
-                    <p class="card-description">Thông tin</p>
+                    <p class="card-description">Infomation</p>
                     <form class="forms-sample">
                       <div class="form-group">
                         <label for="title">Title</label>
@@ -33,19 +33,19 @@
                       </div>
                       <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="text" name="price" class="form-control" id="price" placeholder="Price" />
+                        <input type="number" name="price" class="form-control" id="price" placeholder="Price" required/>
                       </div>
                       <div class="form-group">
                         <label for="size">Size</label>
-                        <input type="text" name="size" class="form-control" id="size" placeholder="Size" />
+                        <input type="number" name="size" class="form-control" id="size" placeholder="Size" required/>
                       </div>
                       <div class="form-group">
                         <label for="price">Bed</label>
-                        <input type="text" name="bed" class="form-control" id="bed" placeholder="Amount of Bed" />
+                        <input type="number" name="bed" class="form-control" id="bed" placeholder="Amount of Bed" required/>
                       </div>
                       <div class="form-group">
                         <label for="price">Bath</label>
-                        <input type="text" name="bath" class="form-control" id="bath" placeholder="Amount of Bath" />
+                        <input type="number" name="bath" class="form-control" id="bath" placeholder="Amount of Bath" required/>
                       </div>
                       <div class="form-group">
                         <label>File upload</label>
@@ -151,6 +151,7 @@
             }
           }
         };
+        // => address
       }
 	</script>
   </body>

@@ -7,23 +7,31 @@
                     </div>
                     <h1 class="m-0 text-primary">Your Home</h1>
                 </a>
+                
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="/auth/home" class="nav-item nav-link active">Home</a>
+                        {{#ifCond this}}
                         <a href="/auth/login" class="nav-item nav-link active">Login</a>
+                        {{else}}
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">User</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="/auth/login" class="dropdown-item">User Infomation</a>
+                                <a href="/auth/login" class="dropdown-item">Change password</a>
                                 <a href="/host" class="dropdown-item">Post management</a>
                                 <a href="/auth/logout" class="dropdown-item">Logout</a>
                             </div>
                         </div>
+                        {{/ifCond}}
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Post</a>
+                    {{#ifCond this}}
+                        <a href="/auth/login" class="btn btn-primary px-3 d-none d-lg-flex">Post</a>
+                    {{else}}
+                        <a href="/host/createPost" class="btn btn-primary px-3 d-none d-lg-flex">Post</a>
+                    {{/ifCond}}
                 </div>
             </nav>
         </div>

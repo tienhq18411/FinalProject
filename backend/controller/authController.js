@@ -224,7 +224,5 @@ module.exports = {
       password: hashed,
     });
   },
-  changeUserInfo: async function (req, res) {
-    
-  },
+  
 };

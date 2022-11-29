@@ -1,6 +1,7 @@
 const Post = require("../models/post");
 const account = require("../models/accounts");
-const Comment = require("../models/comment")
+const Comment = require("../models/comment");
+const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 module.exports = {
@@ -118,5 +119,29 @@ module.exports = {
     const status = req.query.action
     await Post.updateOne({id: id}, {status: status})
     res.redirect(`/host`);
+  },
+  viewUserInfo: async function (req, res) {
+    const token = req.cookies.token;
+    let user = {};
+    if(token) {
+      user = await account.findOne({id:jwt.verify(token, "mk").id});
+    }
+    res.render("host/accountInfo", { user: user })
+  },
+  changeUserInfo: async function (req, res) {
+    let hashed = ''
+    if(req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      hashed = await bcrypt.hash(req.body.password, salt);
+    }
+    user = await account.findOne({id:req.body.id});
+    console.log(req.body)
+    await account.updateOne({id: user.id},{
+      name: req.body.name,
+      username: req.body.username,
+      password: hashed || user.password,
+      phone: req.body.phone,
+    })
+    res.redirect("/host/viewUserInfo");
   }
 };

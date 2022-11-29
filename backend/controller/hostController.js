@@ -12,6 +12,12 @@ module.exports = {
     console.log(query)
     const _query = {}
     _query['user.id'] = jwt.verify(token, "mk").id
+    if(query.searchKey) {
+      _query.$or = [
+        { title: { $regex: query.searchKey } },
+        
+      ]
+    }
     let sort = {
       createDate: -1,
     };
@@ -21,7 +27,7 @@ module.exports = {
       };
       delete query.sort;
     }
-    _query.status = { $nin: ['DELETED','INIT'] }
+    _query.status = { $nin: ['DELETE','INIT'] }
     const page = query.page || 1;
     const pageSize = query.pageSize || 9;
     delete query.page;
@@ -106,5 +112,11 @@ module.exports = {
     });
     await comment.save();
     res.redirect(`/auth/detail/${postId}`);
+  },
+  updateStatusPost: async function (req,res) {
+    const id = req.params.id
+    const status = req.query.action
+    await Post.updateOne({id: id}, {status: status})
+    res.redirect(`/host`);
   }
 };

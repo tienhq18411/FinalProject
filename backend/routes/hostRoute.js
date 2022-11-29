@@ -18,4 +18,5 @@ router.post("/updatePost",authMiddleware.requireAuth, Controllers.postUpdatePost
 router.get("/deletePost/:id",authMiddleware.requireAuth, Controllers.deletePost);
 router.get("/comment",authMiddleware.requireAuth, Controllers.commentPost);
 router.post("/comment",authMiddleware.requireAuth, Controllers.commentPost);
+router.get("/updateStatusPost/:id",authMiddleware.requireAuth, Controllers.updateStatusPost)
 module.exports = router;

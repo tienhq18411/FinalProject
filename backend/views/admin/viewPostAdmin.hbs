@@ -51,7 +51,12 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Your Post</h4>
+                    <h4 class="card-title">Manage Post</h4>
+                    <form method="get">
+                    <div class="col-md-4">
+                        <input type="text" name="searchKey" style="border: 1px solid #ebedf2 !important; border-radius: 10px;" class="form-control border-0 py-3" placeholder="Search Keyword">
+                    </div>
+                    </form>
                     </p>
                     <div class="table-responsive">
                       <table class="table">
@@ -62,6 +67,7 @@
                             <th>Size</th>
                             <th>Address</th>
                             <th>Image</th>
+                            <th>User</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
@@ -76,6 +82,8 @@
                              <td>{{#each img}}
                                 <img src="http://localhost:3000/uploads/{{this}}" width="10%" > 
                             {{/each}}</td>
+                            <td>{{user.username}}</td>
+
                             <td>
                               <label class="badge badge-danger {{status}}">{{status}}</label>
                             </td>

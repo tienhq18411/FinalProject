@@ -18,6 +18,13 @@ module.exports = {
     let sort = {
       createDate: -1,
     };
+    if(query.searchKey) {
+      _query.$or = [
+        { username: { $regex: query.searchKey } },
+        { user: { $regex: query.searchKey } },
+        { phone: { $regex: query.searchKey } },
+      ]
+    }
     if (query.sort) {
       sort = CommonUtils.transformSort(query.sort) || {
         createDate: -1,
@@ -113,13 +120,20 @@ module.exports = {
     let sort = {
       createDate: -1,
     };
+    if(query.searchKey) {
+      _query.$or = [
+        { title: { $regex: query.searchKey } },
+        { 'user.username': { $regex: query.searchKey } },
+        
+      ]
+    }
     if (query.sort) {
       sort = CommonUtils.transformSort(query.sort) || {
         createDate: -1,
       };
       delete query.sort;
     }
-    _query.status = { $nin: ['INIT'] }
+    _query.status = { $nin: ['INIT', 'DELETE'] }
     const page = query.page || 1;
     const pageSize = query.pageSize || 9;
     delete query.page;
@@ -152,6 +166,14 @@ module.exports = {
     let sort = {
       createDate: -1,
     };
+    if(query.searchKey) {
+      _query.$or = [
+        { comment: { $regex: query.searchKey } },
+        { 'user.username': { $regex: query.searchKey }},
+        { 'post.title': { $regex: query.searchKey }},
+
+      ]
+    }
     if (query.sort) {
       sort = CommonUtils.transformSort(query.sort) || {
         createDate: -1,

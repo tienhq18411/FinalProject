@@ -46,6 +46,12 @@ hbs.registerHelper('ifStatus', function(data,status,options) {
   }
   return options.inverse(this);
 }); 
+hbs.registerHelper('ifStatusVer2', function(data,status,options) {
+  if(data == status) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+}); 
 hbs.registerHelper('ifLength', function(data,options) {
   if(data.length) {
     return options.fn(this);

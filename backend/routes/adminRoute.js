@@ -16,7 +16,6 @@ router.get("/updateAccountAdmin/:id",authMiddleware.requireAuth,authMiddleware.c
 router.post("/updateAccountAdmin",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.postUpdateAccountAdmin);
 
 router.get("/lockAccount/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.lockAccount);
-
 // manage post
 router.get("/viewPost",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewPost);
 router.get("/viewPost/:id",authMiddleware.requireAuth,authMiddleware.checkAdmin, Controllers.viewPost);

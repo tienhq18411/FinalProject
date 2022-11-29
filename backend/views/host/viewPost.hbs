@@ -96,6 +96,11 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Your Post</h4>
+                    <form method="get">
+                    <div class="col-md-4">
+                        <input type="text" name="searchKey" style="border: 1px solid #ebedf2 !important; border-radius: 10px;" class="form-control border-0 py-3" placeholder="Search Keyword">
+                    </div>
+                    </form>
                     </p>
                     <div class="table-responsive">
                       <table class="table">
@@ -124,8 +129,13 @@
                               <label class="badge badge-danger {{status}}">{{status}}</label>
                             </td>
                              <th><a href="/host/updatePost/{{id}}"><button class="btn btn-light">Edit</button></a>
-                             <a href="/host/createPost"><button class="btn btn-light">Lock</button></a>
-                             <a href="/host/createPost"><button class="btn btn-light">Delete</button></a>
+                             {{#ifStatusVer2 status 'APPROVE'}}
+                             <a href="/host/updateStatusPost/{{id}}?action=LOCK"><button class="btn btn-light">Lock</button></a>
+                             {{/ifStatusVer2}}
+                             {{#ifStatusVer2 status 'LOCK'}}
+                             <a href="/host/updateStatusPost/{{id}}?action=APPROVE"><button class="btn btn-light">UnLock</button></a>
+                             {{/ifStatusVer2}}
+                             <a href="/host/updateStatusPost/{{id}}?action=DELETE"><button class="btn btn-light">Delete</button></a>
                              </th>
                           </tr>
                           {{/each}}

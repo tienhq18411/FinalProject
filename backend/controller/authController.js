@@ -137,8 +137,8 @@ module.exports = {
         password: hashed,
         phone: req.body.phone,
       });
-      await newUser.save();
-      res.redirect("login");
+     await newUser.save();
+     res.redirect("login");
     } catch (err) {
       res.status(500).json(err);
     }

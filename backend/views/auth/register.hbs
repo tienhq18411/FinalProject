@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -64,4 +64,339 @@
     }
 </style>
 </body>
-</html>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+	<link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="http://localhost:3000/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="http://localhost:3000/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="http://localhost:3000/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="http://localhost:3000/css/style.css" rel="stylesheet">
+<!-- Template Stylesheet -->
+    <link href="http://localhost:3000/style.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+	<form method="post" id="signup">
+	<section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Sign up</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+              <div
+                class="img"
+                style="background-image: url(http://localhost:3000/img/property-3.jpg)"
+              ></div>
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4">Sign Up</h3>
+                  </div>
+                  <div class="w-100">
+                    <p class="social-media d-flex justify-content-end">
+                      <a
+                        href="#"
+                        class="social-icon d-flex align-items-center justify-content-center"
+                        ><span class="fa fa-facebook"></span
+                      ></a>
+                      <a
+                        href="#"
+                        class="social-icon d-flex align-items-center justify-content-center"
+                        ><span class="fa fa-twitter"></span
+                      ></a>
+                    </p>
+                  </div>
+                </div>
+                <form action="#" class="signin-form">
+                  <div class="form-group mb-3">
+                    <label class="label" for="name">Username</label>
+                    <input
+						id="username"
+                      type="text"
+                      class="form-control"
+                      placeholder="Username"
+					  name="username"
+                      
+                    />
+					<small></small>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <input
+					id = "password"
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+					  name="password"
+                      
+                    />
+					<small></small>
+                  </div>
+				  <div class="form-group mb-3">
+                    <label class="label" for="password">Confirm Password</label>
+                    <input
+					id="confirm-password"
+                      type="password"
+                      class="form-control"
+                      placeholder="Confirm Password"
+					  name="confirmPassword"
+                      
+                    />
+					<small></small>
+                  </div>
+				  <div class="form-group mb-3">
+                    <label class="label" for="name">Phone</label>
+                    <input
+					id="phone"
+                      type="text"
+                      class="form-control"
+                      placeholder="Phone"
+					  name="phone"
+                      
+                    />
+					<small></small>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary rounded submit px-3"
+					  value="Submit"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	</form>
+<style>
+
+</style>
+<!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost:3000/lib/wow/wow.min.js"></script>
+    <script src="http://localhost:3000/lib/easing/easing.min.js"></script>
+    <script src="http://localhost:3000/lib/waypoints/waypoints.min.js"></script>
+    <script src="http://localhost:3000/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <script src="http://localhost:3000/js/main.js"></script>
+	<script>
+		const usernameEl = document.querySelector('#username');
+const passwordEl = document.querySelector('#password');
+const confirmPasswordEl = document.querySelector('#confirm-password');
+const phoneEl = document.querySelector('#phone')
+const form = document.querySelector('#signup');
+
+
+const checkUsername = () => {
+
+    let valid = false;
+
+    const min = 6,
+        max = 25;
+
+    const username = usernameEl.value.trim();
+
+    if (!isRequired(username)) {
+        showError(usernameEl, 'Username cannot be blank.');
+    } else if (!isBetween(username.length, min, max)) {
+        showError(usernameEl, `Username must be between ${min} and ${max} characters.`)
+    } else {
+        showSuccess(usernameEl);
+        valid = true;
+    }
+    return valid;
+};
+
+
+const checkPhone = () => {
+    let valid = false;
+    const phone = phoneEl.value.trim();
+    if (!isRequired(phone)) {
+        showError(phoneEl, 'Phone cannot be blank.');
+    } else if (!isPhoneValid(phone)) {
+        showError(phoneEl, 'Phone is not valid.')
+    } else {
+        showSuccess(phoneEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkPassword = () => {
+    let valid = false;
+
+
+    const password = passwordEl.value.trim();
+
+    if (!isRequired(password)) {
+        showError(passwordEl, 'Password cannot be blank.');
+    } else if (!isPasswordSecure(password)) {
+        showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+    } else {
+        showSuccess(passwordEl);
+        valid = true;
+    }
+
+    return valid;
+};
+
+const checkConfirmPassword = () => {
+    let valid = false;
+    // check confirm password
+    const confirmPassword = confirmPasswordEl.value.trim();
+    const password = passwordEl.value.trim();
+
+    if (!isRequired(confirmPassword)) {
+        showError(confirmPasswordEl, 'Please enter the password again');
+    } else if (password !== confirmPassword) {
+        showError(confirmPasswordEl, 'The password does not match');
+    } else {
+        showSuccess(confirmPasswordEl);
+        valid = true;
+    }
+
+    return valid;
+};
+
+const isPhoneValid = (email) => {
+    const re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    return re.test(email);
+};
+
+const isPasswordSecure = (password) => {
+    const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    return re.test(password);
+};
+
+const isRequired = value => value === '' ? false : true;
+const isBetween = (length, min, max) => length < min || length > max ? false : true;
+
+
+const showError = (input, message) => {
+    // get the form-field element
+    const formField = input.parentElement;
+    // add the error class
+    formField.classList.remove('success');
+    formField.classList.add('error');
+
+    // show the error message
+    const error = formField.querySelector('small');
+    error.textContent = message;
+};
+
+const showSuccess = (input) => {
+    // get the form-field element
+    const formField = input.parentElement;
+
+    // remove the error class
+    formField.classList.remove('error');
+    formField.classList.add('success');
+
+    // hide the error message
+    const error = formField.querySelector('small');
+    error.textContent = '';
+}
+
+
+form.addEventListener('submit', function (e) {
+    // prevent the form from submitting
+
+    // validate fields
+    let isUsernameValid = checkUsername(),
+        isPhoneValid = checkPhone(),
+        isPasswordValid = checkPassword(),
+        isConfirmPasswordValid = checkConfirmPassword();
+
+    let isFormValid = isUsernameValid &&
+        isPhoneValid &&
+        isPasswordValid &&
+        isConfirmPasswordValid;
+
+    // submit to the server if the form is valid
+	if(!isFormValid) {
+    	e.preventDefault();
+
+	}
+    if (isFormValid) {
+		addEventListener('submit', (event) => {});
+    }
+});
+
+
+const debounce = (fn, delay = 500) => {
+    let timeoutId;
+    return (...args) => {
+        // cancel the previous timer
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        // setup a new timer
+        timeoutId = setTimeout(() => {
+            fn.apply(null, args)
+        }, delay);
+    };
+};
+
+form.addEventListener('input', debounce(function (e) {
+    switch (e.target.id) {
+        case 'username':
+            checkUsername();
+            break;
+        case 'phone':
+            checkPhone();
+            break;
+        case 'password':
+            checkPassword();
+            break;
+        case 'confirm-password':
+            checkConfirmPassword();
+            break;
+    }
+}));
+	</script>
+</body>
+
+</html>   

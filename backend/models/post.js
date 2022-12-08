@@ -13,8 +13,8 @@ const account = mongoose.Schema({
 const post = mongoose.Schema({
   id: { type: String },
   title: { type: String },
-  size: { type: String },
-  price: { type: String },
+  size: { type: Number },
+  price: { type: Number },
   city: { type: String }, 
   district: { type: String }, 
   ward: { type: String },

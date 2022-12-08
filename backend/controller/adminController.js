@@ -13,7 +13,6 @@ module.exports = {
     let user = {}
     const project = { _id: 0 };
     const query = req.query
-    console.log(query)
     const _query = {}
     let sort = {
       createDate: -1,
@@ -74,7 +73,6 @@ module.exports = {
       await newAdmin.save();
       res.redirect("/admin/viewAccountAdmin");
     } catch (err) {
-      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -115,7 +113,6 @@ module.exports = {
     let post = {}
     const project = { _id: 0 };
     const query = req.query
-    console.log(query)
     const _query = {}
     let sort = {
       createDate: -1,

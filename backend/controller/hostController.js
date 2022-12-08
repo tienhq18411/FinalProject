@@ -16,7 +16,6 @@ module.exports = {
     if(query.searchKey) {
       _query.$or = [
         { title: { $regex: query.searchKey } },
-        
       ]
     }
     let sort = {
@@ -83,14 +82,19 @@ module.exports = {
   },
   postUpdatePost: async function (req, res) {
     const id = req.body.id;
-    await Post.findOneAndUpdate({id: id}, {
+    await Post.updateOne({id: id}, {
       title: req.body.title,
-      size: req.body.size,
-      price: req.body.price,
-      servicesPrice: req.body.servicesPrice,
-      address: req.body.address,
-      furniture: req.body.furniture,
-      convenience: req.body.convenience,
+      size: Number(req.body.size),
+      price: Number(req.body.price),
+      city: req.body.city,
+      district: req.body.district,
+      ward: req.body.ward,
+      addressDetail: req.body.addressDetail,
+      addressMap: req.body.addressMap,
+      bed: req.body.bed,
+      bath: req.body.bath,
+      img: arrayUrl,
+      description: req.body.description
     });
     res.redirect("/host");
   },

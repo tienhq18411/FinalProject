@@ -9,7 +9,6 @@ module.exports = {
     const project = { _id: 0 };
     let post;
     const query = req.query
-    console.log(query)
     const _query = {}
     if(query.searchKey) {
       _query.$or = [
@@ -49,12 +48,6 @@ module.exports = {
     let sort = {
       createDate: -1,
     };
-    if (query.sort) {
-      sort = CommonUtils.transformSort(query.sort) || {
-        createDate: -1,
-      };
-      delete query.sort;
-    }
     _query.status = 'APPROVE'
     _query['user.isActive'] = true
     const page = query.page || 1;
@@ -91,12 +84,6 @@ module.exports = {
     let sort = {
       createDate: -1,
     };
-    if (query.sort) {
-      sort = CommonUtils.transformSort(query.sort) || {
-        createDate: -1,
-      };
-      delete query.sort;
-    }
     _query.isActive = true
     const page = query.page || 1;
     const pageSize = query.pageSize || 3;

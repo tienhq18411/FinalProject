@@ -49,11 +49,10 @@ module.exports = {
     res.render("host/createPost");
   },
   postCreatepost: async function (req, res) {
-    const arrayUrl = req.files.map((item) => item.filename);
+    const arrayUrl = req.files?.map((item) => item.filename);
     const id = uuidv4()
     const token = req.cookies.token;
     const user = await account.findOne({id:jwt.verify(token, "mk").id});
-   // console.log(user)
     // tu token lay ra thong tin user roi xu li tiep
     const newPost = await new Post({
       id: id,
@@ -81,7 +80,9 @@ module.exports = {
     res.render("host/updatePost", { newPost: newPost });
   },
   postUpdatePost: async function (req, res) {
+    const arrayUrl = req.files?.map((item) => item.filename);
     const id = req.body.id;
+
     await Post.updateOne({id: id}, {
       title: req.body.title,
       size: Number(req.body.size),

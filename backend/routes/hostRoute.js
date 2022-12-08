@@ -13,7 +13,7 @@ router.get("/createPost",authMiddleware.requireAuth, Controllers.createPost);
 router.post("/createPost",authMiddleware.requireAuth, upload.array("img", 10), Controllers.postCreatepost);
 
 router.get("/updatePost/:id",authMiddleware.requireAuth, Controllers.updatePost);
-router.post("/updatePost",authMiddleware.requireAuth, Controllers.postUpdatePost);
+router.post("/updatePost/:id",authMiddleware.requireAuth, Controllers.postUpdatePost);
 
 router.get("/deletePost/:id",authMiddleware.requireAuth, Controllers.deletePost);
 router.get("/comment",authMiddleware.requireAuth, Controllers.commentPost);

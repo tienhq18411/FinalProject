@@ -81,7 +81,7 @@
                       </div>
                       <div class="form-group">
                         <label for="address">Location In Google Map</label>
-                        <input type="text" name="addressMap" class="form-control" id="address" placeholder="Location In Google Map" />
+                        <input type="text" name="addressMap" class="form-control" id="address-map" placeholder="Location In Google Map" />
                       </div>
                       <div class="form-group">
                         <label for="description">Description</label>
@@ -153,6 +153,244 @@
         };
         // => address
       }
+		const titleEl = document.querySelector('#title');
+    const priceEl = document.querySelector('#price');
+    const sizeEl = document.querySelector('#size');
+    const bedEl = document.querySelector('#bed')
+    const bathEl = document.querySelector('#bath');
+    const cityEl = document.querySelector('#city');
+    const districtEl = document.querySelector('#district');
+    const wardEl = document.querySelector('#ward');
+    const addressEl = document.querySelector('#address');
+
+    const checkTitle = () => {
+        let valid = false;
+
+        const min = 6,
+        max = 50;
+
+        const title = titleEl.value.trim();
+        if (!isRequired(title)) {
+            showError(titleEl, 'Title cannot be blank.');
+        } else if (!isBetween(title.length, min, max)) {
+            showError(titleEl, `Title must be between ${min} and ${max} characters.`)
+        } else {
+            showSuccess(titleEl);
+            valid = true;
+        }
+        return valid;
+    };
+
+
+    const checkPrice = () => {
+        let valid = false;
+        const min = 100000,
+        max = 100000000;
+        const price = priceEl.value.trim();
+        if (!isRequired(price)) {
+          showError(priceEl, 'Price cannot be blank.');
+        }
+        else if (!isBetween(price.length, min, max)) {
+            showError(priceEl, `Price must be between ${min} and ${max} vnd.`)
+        } 
+        else {
+          showSuccess(priceEl);
+          valid = true;
+        }
+        return valid;
+    };
+
+    const checkSize = () => {
+        let valid = false;
+        const size = sizeEl.value.trim();
+        const min = 10,
+        max = 150;
+        if (!isRequired(size)) {
+            showError(sizeEl, 'Size cannot be blank.');
+        }
+        else if (!isBetween(size.length, min, max)) {
+            showError(sizeEl, `Size must be between ${min} and ${max} m2.`)
+        } 
+        else {
+            showSuccess(sizeEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+
+    const checkBed = () => {
+        let valid = false;
+        const min = 1,
+        max = 5;
+        const bed = bedEl.value.trim();
+
+        if (!isRequired(bed)) {
+            showError(bedEl, 'Bed cannot be blank.');
+        } else if (!isBetween(bed.length, min, max)) {
+            showError(bedEl, `Bed must be between ${min} and ${max} amount.`)
+
+        } else {
+            showSuccess(bedEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+
+      const checkBath = () => {
+        let valid = false;
+        const min = 1,
+        max = 5;
+        const bath = bathEl.value.trim();
+
+        if (!isRequired(bath)) {
+            showError(bathEl, 'Bath cannot be blank.');
+        } else if (!isBetween(bath.length, min, max)) {
+            showError(bathEl, `Bath must be between ${min} and ${max} amount.`)
+
+        } else {
+            showSuccess(bathEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+    const checkCity = () => {
+        let valid = false;
+        const city = cityEl.value.trim();
+
+        if (!isRequired(city)) {
+            showError(cityEl, 'Please select a city');
+        }else {
+            showSuccess(cityEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+    const checkDistrict = () => {
+        let valid = false;
+        const district = districtEl.value.trim();
+
+        if (!isRequired(district)) {
+            showError(districtEl, 'Please select a district');
+        }else {
+            showSuccess(districtEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+   const checkWard = () => {
+        let valid = false;
+        const ward = wardEl.value.trim();
+
+        if (!isRequired(ward)) {
+            showError(wardEl, 'Please select a ward');
+        }else {
+            showSuccess(wardEl);
+            valid = true;
+        }
+
+        return valid;
+    };
+
+    const isPhoneValid = (email) => {
+        const re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        return re.test(email);
+    };
+
+    const isPasswordSecure = (password) => {
+        const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        return re.test(password);
+    };
+
+    const isRequired = value => value === '' ? false : true;
+    const isBetween = (length, min, max) => length < min || length > max ? false : true;
+
+
+    const showError = (input, message) => {
+        // get the form-field element
+        const formField = input.parentElement;
+        // add the error class
+        formField.classList.remove('success');
+        formField.classList.add('error');
+
+        // show the error message
+        const error = formField.querySelector('small');
+        error.textContent = message;
+    };
+
+    const showSuccess = (input) => {
+        // get the form-field element
+        const formField = input.parentElement;
+
+        // remove the error class
+        formField.classList.remove('error');
+        formField.classList.add('success');
+
+        // hide the error message
+        const error = formField.querySelector('small');
+        error.textContent = '';
+    }
+
+
+    form.addEventListener('submit', function (e) {
+        // prevent the form from submitting
+
+        // validate fields
+        let isUsernameValid = checkUsername(),
+            isPhoneValid = checkPhone(),
+            isPasswordValid = checkPassword(),
+            isConfirmPasswordValid = checkConfirmPassword();
+
+        let isFormValid = isUsernameValid &&
+            isPhoneValid &&
+            isPasswordValid &&
+            isConfirmPasswordValid;
+
+        // submit to the server if the form is valid
+      if(!isFormValid) {
+          e.preventDefault();
+
+      }
+        if (isFormValid) {
+        addEventListener('submit', (event) => {});
+        }
+    });
+
+
+    const debounce = (fn, delay = 500) => {
+        let timeoutId;
+        return (...args) => {
+            // cancel the previous timer
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            // setup a new timer
+            timeoutId = setTimeout(() => {
+                fn.apply(null, args)
+            }, delay);
+        };
+    };
+
+    form.addEventListener('input', debounce(function (e) {
+        switch (e.target.id) {
+            case 'username':
+                checkUsername();
+                break;
+            case 'phone':
+                checkPhone();
+                break;
+            case 'password':
+                checkPassword();
+                break;
+            case 'confirm-password':
+                checkConfirmPassword();
+                break;
+        }
+    }));
 	</script>
   </body>
 </html>

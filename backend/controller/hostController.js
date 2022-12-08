@@ -59,8 +59,8 @@ module.exports = {
     const newPost = await new Post({
       id: id,
       title: req.body.title,
-      size: req.body.size,
-      price: req.body.price,
+      size: Number(req.body.size),
+      price: Number(req.body.price),
       city: req.body.city,
       district: req.body.district,
       ward: req.body.ward,
